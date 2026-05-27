@@ -1,0 +1,45 @@
+{
+    "title": "CausalBench",
+    "description": "A comprehensive benchmark for evaluating causal reasoning capabilities of large language models, including mathematical and code-based scenarios.",
+    "creators": [
+        {
+            "name": "CCLV",
+            "affiliation": "University"
+        }
+    ],
+    "license": "CC BY 4.0",
+    "url": "https://huggingface.co/datasets/CCLV/CausalBench",
+    "DOI": "https://doi.org/10.5281/zenodo.11634926",
+    "keywords": [
+        "causal reasoning",
+        "benchmark",
+        "language models",
+        "dataset",
+        "mathematics",
+        "code"
+    ],
+    "dateCreated": "2024-06-05",
+    "version": "1.0",
+    "files": [
+        {
+            "name": "CausalBench Mathematical Scenarios",
+            "url": "https://huggingface.co/datasets/CCLV/CausalBench/blob/main/CausalBench_Math_Part.csv",
+            "format": "CSV",
+            "size": "15MB"
+        },
+        {
+            "name": "CausalBench Code Scenarios",
+            "url": "https://huggingface.co/datasets/CCLV/CausalBench/blob/main/CausalBench_Code_Part.csv",
+            "format": "CSV",
+            "size": "10MB"
+        },
+        {
+            "name": "CausalBench Textual Scenarios",
+            "url": "https://huggingface.co/datasets/CCLV/CausalBench/blob/main/CausalBench_Text_Part.csv",
+            "format": "CSV",
+            "size": "35MB"
+        }
+
+
+    ]
+}

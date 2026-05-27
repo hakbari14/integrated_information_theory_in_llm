@@ -1,0 +1,141 @@
+ID,Sample_ID,Prompt,Target,Completion,Final_Answer,Accuracy,Settings
+0,29,"<｜begin▁of▁sentence｜><｜User｜>Gloria is shoe shopping when she comes across a pair of boots that fit her shoe budget. However, she has to choose between the boots and two pairs of high heels that together cost five dollars less than the boots. If one pair of heels costs $33 and the other costs twice as much, how many dollars are the boots? Lets think step by step and output the final answer after ""####"".",104,"First, I need to understand what information is given in the problem.
+
+Gloria can afford either the boots or the two pairs of high heels. The total cost of the two pairs of high heels is five dollars less than the cost of the boots. One pair of heels costs $33, and the other costs twice as much.
+
+So, let me denote the cost of the boots as B. Then, the total cost for the two pairs of high heels would be 33 plus (2 times 33). That equals 33 + 66 = 99 dollars.
+
+Since the total cost of the high heels is five dollars less than the boots, we have:
+
+B - 5 = 99
+
+To find the value of B, I'll add 5 to both sides of the equation:
+
+B = 99 + 5
+B = 104
+
+Therefore, the boots cost $104.
+</think>
+
+The cost of the boots is \boxed{104} dollars.",104,TRUE,Settings_46
+1,29,"<｜begin▁of▁sentence｜><｜User｜>Gloria is shoe shopping when she comes across a pair of boots that fit her shoe budget. However, she has to choose between the boots and two pairs of high heels that together cost five dollars less than the boots. If one pair of heels costs $33 and the other costs twice as much, how many dollars are the boots? Lets think step by step and output the final answer after ""####"".",104,"Okay, so Gloria is at the shoe store looking for something to buy. She finds a pair of boots that fit her budget. But now she's got a choice: either buy these boots or go with two pairs of high heels. Hmm, interesting.
+
+Alright, let me break this down. The problem says she has to choose between the boots and two pairs of high heels. The total cost of the two pairs of high heels is five dollars less than the boots. So if I can figure out the cost of the high heels, maybe I can find out how much the boots cost.
+
+Wait, it also mentions that one pair of heels costs $33, and the other costs twice as much. Oh, okay, so there are two pairs here—each pair is priced individually. One is cheaper at $33, and the other is more expensive because it's twice as much. Let me write that down.
+
+First, let's denote the cost of the first pair of high heels as H1 and the second pair as H2. According to the problem:
+
+H1 = $33
+
+And since the other pair costs twice as much, H2 would be 2 times H1. So,
+
+H2 = 2 * H1
+H2 = 2 * 33
+H2 = $66
+
+So each pair of high heels costs $33 and $66 respectively. Now, the total cost for both pairs would be H1 + H2.
+
+Total cost of high heels (TH) = H1 + H2
+TH = 33 + 66
+TH = $99
+
+Got it. So the two pairs of high heels together cost $99. Now, the problem states that these high heels are five dollars less than the boots. Let's call the cost of the boots B.
+
+So according to the problem statement:
+
+TH = B - 5
+
+We already found that TH is $99, so plugging that in:
+
+99 = B - 5
+
+To find B, we just need to add 5 to both sides of the equation.
+
+B = 99 + 5
+B = $104
+
+Therefore, the boots must cost $104. Let me double-check my calculations to make sure I didn't make any mistakes.
+
+First, calculating H2:
+- H1 is $33.
+- H2 is 2*33 which is indeed $66.
+- Total high heels: 33 + 66 equals $99. That seems right.
+
+Then, since the high heels are $5 less than the boots:
+- If high heels are $99, then the boots should be $99 plus $5, which is $104. Yep, that adds up correctly.
+
+I don't see any errors in my reasoning. So, the boots must cost $104.
+</think>
+
+The total cost of the two pairs of high heels is $99. Since they are $5 less than the boots, the boots cost $104.
+
+#### 
+The boots cost \boxed{104} dollars.",104,TRUE,Settings_0
+2,29,"<｜begin▁of▁sentence｜><｜User｜>Gloria is shoe shopping when she comes across a pair of boots that fit her shoe budget. However, she has to choose between the boots and two pairs of high heels that together cost five dollars less than the boots. If one pair of heels costs $33 and the other costs twice as much, how many dollars are the boots? Lets think step by step and output the final answer after ""####"".",104,"Okay, so Gloria is at the shoe store looking for something to buy. She finds a pair of boots that fit her budget. But now she's got a choice: either buy these boots or go with two pairs of high heels. Hmm, okay.
+
+The problem says she has to decide between the boots and two pairs of high heels. The total cost of the two pairs of high heels is five dollars less than the boots. So if I let the price of the boots be some amount, then the combined cost of the two heels would be that amount minus five.
+
+Now, it also mentions that one pair of heels costs $33, and the other costs twice as much. Wait, so each pair isn't necessarily the same price. One is 33, the other is double that. Let me write this down.
+
+Let’s denote:
+- Let B be the price of the boots.
+- Heel1 = $33
+- Heel2 = 2 * Heel1 = 2*33 = $66
+
+So the total cost for both pairs of high heels is Heel1 + Heel2 = 33 + 66 = $99.
+
+According to the problem, the total cost of the two pairs of high heels is five dollars less than the boots. That means:
+
+Heels_total = B - 5
+
+But we already calculated Heels_total as $99, right?
+
+So substituting in the equation:
+
+99 = B - 5
+
+To find B, which is the price of the boots, I can solve for B:
+
+B = 99 + 5
+B = 104
+
+Wait, does that make sense? Let me check my steps again.
+
+First, Heel1 is $33, Heel2 is $66. Together they add up to $99. Since the total of the heels is five dollars less than the boots, adding five to $99 should give the price of the boots. So yes, $104 seems correct.
+
+I don't see any mistakes here. So the boots must cost $104.
+</think>
+
+The total cost of the two pairs of high heels is \$99. Since this is \$5 less than the boots, the boots cost \$99 + \$5 = \$104.
+
+Answer: \boxed{104}",104,TRUE,Settings_37
+3,29,"<｜begin▁of▁sentence｜><｜User｜>Gloria is shoe shopping when she comes across a pair of boots that fit her shoe budget. However, she has to choose between the boots and two pairs of high heels that together cost five dollars less than the boots. If one pair of heels costs $33 and the other costs twice as much, how many dollars are the boots? Lets think step by step and output the final answer after ""####"".",104,"Okay, so Gloria is at the shoe store and finds a pair of boots that fits her budget. She's trying to decide between buying these boots or going with two pairs of high heels. The problem says that the total cost of the two pairs of high heels is five dollars less than the boots. Hmm, okay.
+
+Let me break this down. First, I need to figure out how much the boots cost. Let's call the price of the boots ""B"" dollars. That seems like a good starting point because we're trying to find B.
+
+Now, there are two pairs of high heels. One pair costs $33, which is straightforward. The other pair costs twice as much as the first pair. So if one pair is $33, then the other must be 2 times 33. Let me calculate that: 2 * 33 equals 66. So the second pair of heels costs $66.
+
+Alright, now the total cost for both pairs of high heels would be the sum of each pair's cost. That means adding $33 and $66 together. Let me do that addition: 33 + 66 is... let's see, 30 plus 60 is 90, and 3 plus 6 is 9, so altogether that's 99. So the two pairs of high heels together cost $99.
+
+The problem states that the total cost of the high heels is five dollars less than the boots. So, if the boots cost B dollars, then the high heels, which are $99, equal B minus 5. In equation form, that would be:
+
+99 = B - 5
+
+To find B, I just need to solve for it. So I can add 5 to both sides of the equation to isolate B. Let's do that:
+
+99 + 5 = B
+104 = B
+
+So, B is 104. Therefore, the boots cost $104.
+
+Wait, let me double-check my calculations to make sure I didn't make any mistakes. The first pair of heels is $33, the second is $66. Adding them gives 33 + 66, which is indeed 99. Then, since the heels are $5 cheaper than the boots, the boots should be 99 + 5, which is 104. Yep, that makes sense.
+
+I don't think I made any errors here. It all adds up correctly.
+</think>
+
+The total cost of the two pairs of high heels is $99, which is $5 less than the boots. Therefore, the boots cost $104.
+
+#### \boxed{104}",104,TRUE,Settings_51
+
+

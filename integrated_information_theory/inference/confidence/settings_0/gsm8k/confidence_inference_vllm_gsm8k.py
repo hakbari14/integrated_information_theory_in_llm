@@ -1,0 +1,26 @@
+import os 
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+
+from integrated_information_theory.inference.confidence.confidence_inference_vllm import confidence_inference_vllm
+from integrated_information_theory.datasets.math.gsm8k_dataset import gsm8k_dataset
+from integrated_information_theory.datasets.dataset_config import dataset_config
+from integrated_information_theory.logger.inference.self_consistency.self_consistency_inference_logger import self_consistency_inference_logger
+
+class confidence_inference_gsm8k_vllm(confidence_inference_vllm): 
+
+    def __init__(self, model_name):
+        super().__init__(model_name)
+
+    def get_dataset(self):
+        if self.dataset is None:
+            config = dataset_config(self.model_name)
+            config.set_max_test_dataset_size(1)
+            # config.set_ratio_test_dataset_size(0.2)            
+            self.dataset = gsm8k_dataset(config)
+        return self.dataset
+
+    def create_logger(self, settings, run_number):
+        return self_consistency_inference_logger(log_file_name = f'integrated_information_theory/inference/confidence/settings_0/gsm8k/run_{run_number}/confidence_gsm8k_{settings}.csv')
+
+t = confidence_inference_gsm8k_vllm('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60')
+t.calculate_accuracy_confidence_vllm(run_number = 3)

@@ -1,0 +1,57 @@
+a) create type 
+	trajectory 
+	pompt 
+	batch 
+b) dim
+	3 
+	6
+	9
+c) state type 
+	token 
+	chunk 
+d) 
+	causality 
+	phi 
+
+
+5)  causality, prompt, token, 3  -> (4 * 178) 
+10) causality, prompt, chunk, 6  -> (4 * 170) / 4
+28) causality, prompt, chunk, 3  -> (4 * 155) / 4
+35) causality, prompt, token, 6  -> (4 * 167)
+avg accuray reward in all settings = 80 
+avg mean length in all settings = 168 (30%)
+avg iit reward in all settings = 13
+
+
+13,17) causality, batch, token, 6 
+14,21) causality, batch, token, 3 
+27) causality, batch, chunk, 6 
+31) causality, batch, chunk, 3 
+avg accuray reward in all settings = 80
+avg mean length in all settings = 250
+avg iit reward in all settings = 10
+
+
+22) causality, trajectory, token, 3  (200)
+23) causality, trajectory, chunk, 6  (200/4)
+24) causality, trajectory, token, 6 (200)
+26) causality, trajectory, chunk, 3 (200/4)
+avg accuray reward in all settings = 71 
+avg mean length in all settings = 97
+avg iit reward in all settings = 21.75
+
+
+12) phi, prompt, token, 3
+16) phi, batch, token, 3 
+25) phi, trajectory, token, 3 
+32) phi, trajectory, chunk, 3 
+33) phi, batch, chunk, 3 
+34) phi, prompt, chunk, 3 
+avg accuray reward in all settings = 80.6 
+avg mean length in all settings = 261 (9%)
+avg iit reward in all settings = 10
+
+
+4) baseline 
+avg accuray reward in all settings = 82
+avg mean length in all settings = 238
