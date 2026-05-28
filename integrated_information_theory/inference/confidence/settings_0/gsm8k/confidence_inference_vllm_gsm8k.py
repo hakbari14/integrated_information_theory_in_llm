@@ -23,4 +23,4 @@ class confidence_inference_gsm8k_vllm(confidence_inference_vllm):
         return self_consistency_inference_logger(log_file_name = f'integrated_information_theory/inference/confidence/settings_0/gsm8k/run_{run_number}/confidence_gsm8k_{settings}.csv')
 
 t = confidence_inference_gsm8k_vllm('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60')
-t.calculate_accuracy_confidence_vllm(run_number = 3)
+t.calculate_accuracy_confidence(run_number = 3)

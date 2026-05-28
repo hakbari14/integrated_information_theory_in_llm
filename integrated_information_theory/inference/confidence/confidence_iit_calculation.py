@@ -38,39 +38,39 @@ class confidence_iit_calculation():
             if entity is None: continue
                 
             new_log = self_consistency_log_res_api_entity()
-            new_log.set_ii_calculator_name(iit_calculator.get_config().get_name())
-            new_log.set_sample_ID(log.get_sample_ID())
-            new_log.set_problem_id(log.get_problem_id())
-            new_log.set_split(log.get_split())
-            new_log.set_prompt(log.get_prompt())
-            new_log.set_target(log.get_target())
-            for log_detail in log.get_consistency_list():
+            new_log.ii_calculator_name = iit_calculator.get_config().get_name()
+            new_log.sample_ID = log.sample_ID
+            new_log.problem_id = log.problem_id
+            new_log.split = log.split
+            new_log.prompt = log.prompt
+            new_log.target = log.target
+            for log_detail in log.consistency_list:
                 new_log_detail = self_consistency_log_detail_api_entity()
-                new_log_detail.set_index(log_detail.get_index())
-                new_log_detail.set_completion(log_detail.get_completion())
-                new_log_detail.set_final_answer(log_detail.get_final_answer())
-                new_log_detail.set_compared_final_answer(log_detail.get_compared_final_answer())
-                new_log_detail.set_accuracy(log_detail.get_accuracy())
+                new_log_detail.index = log_detail.index
+                new_log_detail.completion = log_detail.completion
+                new_log_detail.final_answer = log_detail.final_answer
+                new_log_detail.compared_final_answer = log_detail.compared_final_answer
+                new_log_detail.accuracy = log_detail.accuracy
                 new_log.add_consistency_list(new_log_detail)
 
-            new_log.set_token_count(entity.get_token_count())
-            new_log.set_reduced_dim(entity.get_reduced_dim())
-            new_log.set_phi_reward(entity.get_iit_reward())
-            new_log.set_phi_reward_raw(entity.get_iit_reward_raw())
-            new_log.set_phi_reward_raw_actual(entity.get_iit_reward_raw_actual())
-            new_log.set_tpm_loss(entity.get_tpm_loss())
-            new_log.set_tpm_entropy(entity.get_tpm_entropy())
-            new_log.set_completion_loss(my_utils.tensor_tostring(entity.get_completion_loss()))
-            new_log.set_perplexity(my_utils.calculate_perplexity(entity.get_completion_loss()))
-            new_log.set_entropy(entity.get_completion_entropy())
-            new_log.set_completion_embedding_shape(entity.get_completion_embedding_shape())
-            new_log.set_completion(entity.get_completion())
-            new_log.set_token_count_for_reduced_dim(entity.get_token_count_for_reduced_dim())
+            new_log.token_count = entity.get_token_count()
+            new_log.reduced_dim = entity.get_reduced_dim()
+            new_log.phi_reward = entity.get_iit_reward()
+            new_log.phi_reward_raw = entity.get_iit_reward_raw()
+            new_log.phi_reward_raw_actual = entity.get_iit_reward_raw_actual()
+            new_log.tpm_loss = entity.get_tpm_loss()
+            new_log.tpm_entropy = entity.get_tpm_entropy()
+            new_log.completion_loss = my_utils.tensor_tostring(entity.get_completion_loss())
+            new_log.perplexity = my_utils.calculate_perplexity(entity.get_completion_loss())
+            new_log.entropy = entity.get_completion_entropy()
+            new_log.completion_embedding_shape = entity.get_completion_embedding_shape()
+            new_log.completion = entity.get_completion()
+            new_log.token_count_for_reduced_dim = entity.get_token_count_for_reduced_dim()
 
-            log_detail_list = list(filter(lambda x: x.get_index() == entity.get_key(), new_log.get_consistency_list()))
+            log_detail_list = list(filter(lambda x: x.index == entity.get_key(), new_log.consistency_list))
             new_log_detail = log_detail_list[0]
-            new_log.set_final_answer(new_log_detail.get_final_answer())
-            new_log.set_accuracy(new_log_detail.get_accuracy())
+            new_log.final_answer = new_log_detail.final_answer
+            new_log.accuracy = new_log_detail.accuracy
             response_list.append(new_log)
             del entity_list, entity
             gc.collect()
@@ -84,17 +84,17 @@ class confidence_iit_calculation():
     @torch.inference_mode()
     def load_embedding_and_loss(self, log: self_consistency_log_api_entity) -> tuple[self_consistency_log_api_entity, list[iit_entity]]: 
         entity_list: list[iit_entity] = []
-        refine_prompt = self.representation.clean_prompt_for_phi(log.get_prompt())
+        refine_prompt = self.representation.clean_prompt_for_phi(log.prompt)
         prompt_emb, _, _ = self.representation.extract_representation(refine_prompt, self.get_model(), self.tokenizer, iit_layer_type_enum.SOME)
-        for log_detail in log.get_consistency_list():     
+        for log_detail in log.consistency_list:     
             try:
-                entity = iit_entity(key = log_detail.get_index())
-                entity.set_promptID(log.get_sample_ID())
-                entity.set_prompt(log.get_prompt())
+                entity = iit_entity(key = log_detail.index)
+                entity.set_promptID(log.sample_ID)
+                entity.set_prompt(log.prompt)
                 entity.set_prompt_embedding(prompt_emb)
-                entity.set_completion(log_detail.get_completion())
-                if log_detail.get_completion() is not None:
-                    completion_emb, completion_loss, entropy = self.representation.extract_representation(entity.get_completion(), self.get_external_model(), self.external_tokenizer, self.get_layer_type())
+                entity.set_completion(log_detail.completion)
+                if log_detail.completion is not None:
+                    completion_emb, completion_loss, entropy = self.representation.extract_representation(entity.get_completion(), self.get_model(), self.tokenizer, iit_layer_type_enum.SOME)
                     entity.set_completion_loss(completion_loss)
                     entity.set_completion_embedding_and_shape(completion_emb)
                     entity.set_completion_entropy(entropy)

@@ -4,10 +4,11 @@ from integrated_information_theory.logger.inference.self_consistency.self_consis
 from integrated_information_theory.enums_class import llm_pipeline_type_enum, iit_layer_type_enum
 from vllm import LLM, SamplingParams
 from tqdm import tqdm
-from integrated_information_theory.inference.confidence.iit_calculation_entity import self_consistency_log_api_entity, self_consistency_log_res_api_entity
+from integrated_information_theory.inference.confidence.iit_calculation_entity import self_consistency_log_api_entity, self_consistency_log_res_api_entity, self_consistency_log_detail_api_entity
 import torch
 import requests
 from typing import List
+from pydantic import TypeAdapter
 
 
 class confidence_inference_vllm(ABC): 
@@ -93,55 +94,54 @@ class confidence_inference_vllm(ABC):
         url = "http://127.0.0.1:8000/calculate_iit"
 
         payload = self_consistency_log_api_entity()
-        payload.set_sample_ID(log.get_sample_ID())
-        payload.set_split(log.get_split())
-        payload.set_prompt(log.get_prompt())
-        payload.set_target(log.get_target())
-        payload.set_problem_id(log.get_problem_id())
-        payload.set_(log.get_())
-        for log_detail in payload.get_consistency_list():
-            i_log_detail = self_consistency_log_detail_entity()
-            i_log_detail.set_index(log_detail.get_index())
-            i_log_detail.set_completion(log_detail.get_completion())
-            i_log_detail.set_final_answer(log_detail.get_final_answer())
-            i_log_detail.set_compared_final_answer(log_detail.get_compared_final_answer())
-            i_log_detail.set_accuracy(log_detail.get_accuracy())
-            i_log_detail.set_(log_detail.get_())
+        payload.sample_ID = str(log.get_sample_ID())
+        payload.split = log.get_split()
+        payload.prompt = log.get_prompt()
+        payload.target = str(log.get_target())
+        payload.problem_id = log.get_problem_id()
+        for log_detail in log.get_consistency_list():
+            i_log_detail = self_consistency_log_detail_api_entity()
+            i_log_detail.index = str(log_detail.get_index())
+            i_log_detail.completion = log_detail.get_completion()
+            i_log_detail.final_answer = str(log_detail.get_final_answer())
+            i_log_detail.compared_final_answer = str(log_detail.get_compared_final_answer())
+            i_log_detail.accuracy = log_detail.get_accuracy()
             payload.add_consistency_list(i_log_detail)
 
         response = requests.post(url, json=payload.model_dump())
 
         if response.status_code == 200:
-            i_entity_list = List[self_consistency_log_res_api_entity](**response.json())
+            data = response.json()
+            i_entity_list = TypeAdapter(list[self_consistency_log_res_api_entity]).validate_python(data)            
             for i_entity in i_entity_list: 
-                entity = self_consistency_log_entity(i_entity.get_sample_ID(), i_entity.get_sample_ID(), i_entity.get_problem_id(), i_entity.get_split(), i_entity.get_prompt(), i_entity.get_target())
-                entity.set_completion(i_entity.get_completion())
-                entity.set_token_count(i_entity.get_token_count())
-                entity.set_final_answer(i_entity.get_final_answer())
-                entity.set_accuracy(i_entity.get_accuracy())
-                entity.set_completion_embedding_shape(i_entity.get_completion_embedding_shape())
-                entity.set_completion_loss(i_entity.get_completion_loss())
-                entity.set_perplexity(i_entity.get_perplexity())
-                entity.set_entropy(i_entity.get_entropy())
-                entity.set_token_count_for_reduced_dim(i_entity.get_token_count_for_reduced_dim())
-                entity.set_reduced_dim(i_entity.get_reduced_dim())
-                entity.set_phi_reward(i_entity.get_phi_reward())
-                entity.set_phi_reward_raw(i_entity.get_phi_reward_raw())
-                entity.set_phi_reward_raw_actual(i_entity.get_phi_reward_raw_actual())
-                entity.set_tpm_loss(i_entity.get_tpm_loss())
-                entity.set_tpm_entropy(i_entity.get_tpm_entropy())
+                log = self_consistency_log_entity(i_entity.sample_ID, i_entity.sample_ID, i_entity.problem_id, i_entity.split, i_entity.prompt, i_entity.target)
+                log.set_completion(i_entity.completion)
+                log.set_token_count(i_entity.token_count)
+                log.set_final_answer(i_entity.final_answer)
+                log.set_accuracy(i_entity.accuracy)
+                log.set_completion_embedding_shape(i_entity.completion_embedding_shape)
+                log.set_completion_loss(i_entity.completion_loss)
+                log.set_perplexity(i_entity.perplexity)
+                log.set_entropy(i_entity.entropy)
+                log.set_token_count_for_reduced_dim(i_entity.token_count_for_reduced_dim)
+                log.set_reduced_dim(i_entity.reduced_dim)
+                log.set_phi_reward(i_entity.phi_reward)
+                log.set_phi_reward_raw(i_entity.phi_reward_raw)
+                log.set_phi_reward_raw_actual(i_entity.phi_reward_raw_actual)
+                log.set_tpm_loss(i_entity.tpm_loss)
+                log.set_tpm_entropy(i_entity.tpm_entropy)
 
-                for i_log_detail in i_entity.get_consistency_list():
-                    log_detail = self_consistency_log_detail_entity(i_log_detail.get_index())
-                    log_detail.set_completion(i_log_detail.get_completion())
-                    log_detail.set_final_answer(i_log_detail.get_final_answer())
-                    log_detail.set_compared_final_answer(i_log_detail.get_compared_final_answer())
-                    log_detail.set_token_count(i_log_detail.get_token_count())
-                    log_detail.set_accuracy(i_log_detail.get_accuracy())
-                    entity.add_consistency_list(log_detail)
+                for i_log_detail in i_entity.consistency_list:
+                    log_detail = self_consistency_log_detail_entity(i_log_detail.index)
+                    log_detail.set_completion(i_log_detail.completion)
+                    log_detail.set_final_answer(i_log_detail.final_answer)
+                    log_detail.set_compared_final_answer(i_log_detail.compared_final_answer)
+                    log_detail.set_token_count(i_log_detail.token_count)
+                    log_detail.set_accuracy(i_log_detail.accuracy)
+                    log.add_consistency_list(log_detail)
                     
-                log_list = log_dict.setdefault(i_entity.get_ii_calculator_name(), [])
-                log_list.append(entity)
+                log_list = log_dict.setdefault(i_entity.ii_calculator_name, [])
+                log_list.append(log)
         else:
             print("Error:", response.status_code, response.text)
 
