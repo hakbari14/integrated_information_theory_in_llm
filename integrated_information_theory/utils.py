@@ -88,8 +88,3 @@ class my_utils(object):
         merged_df = pd.concat(df_list, ignore_index=True)
         merged_df.to_csv(f'{directory_full_path}/{file_name}', index=False)
 
-my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_75/settings_75.csv', 2)
-my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_74/settings_74.csv', 2)
-my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_73/settings_73.csv', 2)
-my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_71/settings_71.csv', 2)
-my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_68/settings_68.csv', 3)
