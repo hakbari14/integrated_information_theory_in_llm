@@ -3,6 +3,8 @@ from peft import PeftModel
 import torch
 import pandas as pd
 import torch.nn.functional as F
+import glob
+import numpy as np
 
 class my_utils(object):
     
@@ -65,4 +67,29 @@ class my_utils(object):
         df.to_csv(csv_file_full_path, index=False)
         print(f"Conversion completed successfully! : {csv_file_full_path}")        
 
+    @staticmethod
+    def split_csv_file(file_full_path: str, num_parts: int) -> None: 
+        df = pd.read_csv(file_full_path)
+        indices = np.array_split(df.index, num_parts)
+        for i, idx in enumerate(indices, start=1):
+            chunk = df.loc[idx]
+            output_file = file_full_path.replace(".csv", f"_part_{i}.csv")
+            chunk.to_csv(output_file, index=False)
 
+    @staticmethod
+    def merge_csv_files(directory_full_path: str, file_name: str) -> None: 
+        files = sorted(glob.glob(f"{directory_full_path}/*_part_*.csv"))
+
+        if not files:
+            print("files not found")
+            exit()
+
+        df_list = [pd.read_csv(file) for file in files]
+        merged_df = pd.concat(df_list, ignore_index=True)
+        merged_df.to_csv(f'{directory_full_path}/{file_name}', index=False)
+
+my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_75/settings_75.csv', 2)
+my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_74/settings_74.csv', 2)
+my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_73/settings_73.csv', 2)
+my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_71/settings_71.csv', 2)
+my_utils.split_csv_file('integrated_information_theory/training/peft/gsm8k_qwen_25_3_instruct/logs/settings_68/settings_68.csv', 3)
