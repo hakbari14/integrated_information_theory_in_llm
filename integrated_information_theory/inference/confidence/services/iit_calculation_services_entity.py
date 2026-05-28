@@ -1,6 +1,5 @@
 from typing import Optional, List
 from pydantic import BaseModel, Field, field_validator
-import json 
 
 class self_consistency_log_detail_api_entity(BaseModel):
     index: Optional[str] = None

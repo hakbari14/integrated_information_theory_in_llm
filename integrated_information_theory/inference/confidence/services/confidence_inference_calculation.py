@@ -1,5 +1,5 @@
 from transformers import (AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig)
-from integrated_information_theory.inference.confidence.iit_calculation_entity import self_consistency_log_api_entity, self_consistency_log_detail_api_entity, self_consistency_log_res_api_entity
+from integrated_information_theory.inference.confidence.services.iit_calculation_services_entity import self_consistency_log_api_entity, self_consistency_log_detail_api_entity, self_consistency_log_res_api_entity
 from integrated_information_theory.logger.inference.self_consistency.self_consistency_log_entity import self_consistency_log_entity
 from integrated_information_theory.logger.inference.self_consistency.self_consistency_log_detail_entity import self_consistency_log_detail_entity
 from integrated_information_theory.entity.iit_entity import iit_entity
@@ -16,7 +16,7 @@ import torch
 import gc
 
 
-class confidence_iit_calculation(): 
+class confidence_inference_calculation(): 
 
     def __init__(self, model_name):
         self.model_name = model_name

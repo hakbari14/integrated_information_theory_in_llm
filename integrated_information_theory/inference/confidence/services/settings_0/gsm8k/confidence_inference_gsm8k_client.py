@@ -1,12 +1,12 @@
 import os 
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
-from integrated_information_theory.inference.confidence.confidence_inference_vllm import confidence_inference_vllm
+from integrated_information_theory.inference.confidence.services.confidence_inference_client import confidence_inference_client
 from integrated_information_theory.datasets.math.gsm8k_dataset import gsm8k_dataset
 from integrated_information_theory.datasets.dataset_config import dataset_config
 from integrated_information_theory.logger.inference.self_consistency.self_consistency_inference_logger import self_consistency_inference_logger
 
-class confidence_inference_gsm8k_vllm(confidence_inference_vllm): 
+class confidence_inference_gsm8k_client(confidence_inference_client): 
 
     def __init__(self, model_name):
         super().__init__(model_name)
@@ -20,7 +20,7 @@ class confidence_inference_gsm8k_vllm(confidence_inference_vllm):
         return self.dataset
 
     def create_logger(self, settings, run_number):
-        return self_consistency_inference_logger(log_file_name = f'integrated_information_theory/inference/confidence/settings_0/gsm8k/run_{run_number}/confidence_gsm8k_{settings}.csv')
+        return self_consistency_inference_logger(log_file_name = f'integrated_information_theory/inference/confidence/services/settings_0/gsm8k/run_{run_number}/confidence_gsm8k_{settings}.csv')
 
-t = confidence_inference_gsm8k_vllm('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60')
+t = confidence_inference_gsm8k_client('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60')
 t.calculate_accuracy_confidence(run_number = 3)

@@ -2,16 +2,16 @@ from abc import ABC, abstractmethod
 from integrated_information_theory.logger.inference.self_consistency.self_consistency_log_entity import self_consistency_log_entity
 from integrated_information_theory.logger.inference.self_consistency.self_consistency_log_detail_entity import self_consistency_log_detail_entity
 from integrated_information_theory.enums_class import llm_pipeline_type_enum, iit_layer_type_enum
+from integrated_information_theory.inference.confidence.services.iit_calculation_services_entity import self_consistency_log_api_entity, self_consistency_log_res_api_entity, self_consistency_log_detail_api_entity
 from vllm import LLM, SamplingParams
 from tqdm import tqdm
-from integrated_information_theory.inference.confidence.iit_calculation_entity import self_consistency_log_api_entity, self_consistency_log_res_api_entity, self_consistency_log_detail_api_entity
 import torch
 import requests
 from typing import List
 from pydantic import TypeAdapter
 
 
-class confidence_inference_vllm(ABC): 
+class confidence_inference_client(ABC): 
 
     def __init__(self, model_name):
         self.model_name = model_name
