@@ -88,6 +88,3 @@ class my_utils(object):
         merged_df = pd.concat(df_list, ignore_index=True)
         merged_df.to_csv(f'{directory_full_path}/{file_name}', index=False)
 
-my_utils.split_csv_file('integrated_information_theory/inference/math/self_consistency/settings_64/aime/settings_64_aime_sc_full_samples.csv', 4)
-my_utils.split_csv_file('integrated_information_theory/inference/math/self_consistency/settings_64/gsm8k/settings_64_gsm8k_sc_full_samples.csv', 2)
-my_utils.split_csv_file('integrated_information_theory/inference/math/self_consistency/settings_65/aime/settings_65_aime_sc_full_samples.csv', 4)
