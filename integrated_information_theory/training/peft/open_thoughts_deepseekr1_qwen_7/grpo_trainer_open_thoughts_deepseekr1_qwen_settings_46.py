@@ -3,7 +3,7 @@ from integrated_information_theory.training.peft.open_thoughts_deepseekr1_qwen_7
 from integrated_information_theory.intrinsic_information import intrinsic_information
 from integrated_information_theory.config.intrinsic_information_config import intrinsic_information_config
 from integrated_information_theory.logger.training.training_logger import training_logger
-from integrated_information_theory.enums_class import iit_log_type_enum, granularity_enum, last_layer_computation_type_enum, tpm_creation_type_enum, ii_calculation_type_enum, training_type_enum
+from integrated_information_theory.enums_class import iit_log_type_enum, granularity_enum, last_layer_computation_type_enum, tpm_creation_type_enum, ii_calculation_type_enum, training_type_enum, iit_layer_type_enum, iit_threashold_type_enum
 
 class grpo_trainer_open_thoughts_deepseekr1_qwen_settings_46(grpo_open_thoughts_deepseekr1_qwen_7_peft_trainer): 
 
@@ -15,7 +15,6 @@ class grpo_trainer_open_thoughts_deepseekr1_qwen_settings_46(grpo_open_thoughts_
         if self.model_config is None:
             self.model_config = ModelConfig(
                 model_name_or_path = self.model_name,
-                torch_dtype="bfloat16",
                 attn_implementation="flash_attention_2",
                 use_peft=True,
                 lora_r=4096,
@@ -41,8 +40,10 @@ class grpo_trainer_open_thoughts_deepseekr1_qwen_settings_46(grpo_open_thoughts_
                 gradient_checkpointing_kwargs={"use_reentrant": False},
                 bf16=True,
                 use_vllm=True,
+                vllm_mode="server",
+                vllm_server_host="localhost",
+                vllm_server_port=8000,
             
-                max_prompt_length=512,
                 max_completion_length=5000, 
                 num_generations=2,                      
                 num_generations_eval=1,                      
@@ -53,6 +54,7 @@ class grpo_trainer_open_thoughts_deepseekr1_qwen_settings_46(grpo_open_thoughts_
                 logging_dir='live_logs/settings_46/tb_logs',  
                 eval_strategy="steps",  
                 eval_steps=50,
+                save_steps=50,
             )
 
         return self.training_args
@@ -65,6 +67,8 @@ class grpo_trainer_open_thoughts_deepseekr1_qwen_settings_46(grpo_open_thoughts_
             config.set_adaptive_dim(False)
             config.set_reduced_dim(5)
             config.set_tpm_creation_type(tpm_creation_type_enum.PROMPT)
+            config.set_layer_type(iit_layer_type_enum.SOME)
+            config.set_threashold_type(iit_threashold_type_enum.AVERAGE)
             config.set_last_layer_computation_type(last_layer_computation_type_enum.EXP)
             config.set_last_layer_computation_param(0.09)
             config.set_granularity(granularity_enum.TOKEN)

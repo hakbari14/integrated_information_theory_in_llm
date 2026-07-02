@@ -5,8 +5,7 @@ from integrated_information_theory.datasets.dataset_config import dataset_config
 class grpo_open_thoughts_deepseekr1_qwen_7_peft_trainer(grpo_peft_trainer): 
 
     def __init__(self, training_type):
-#        model_name = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B'
-        model_name = '/opt/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60'
+        model_name = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-7B'
         super().__init__(model_name, training_type)
 
     def get_dataset(self):
