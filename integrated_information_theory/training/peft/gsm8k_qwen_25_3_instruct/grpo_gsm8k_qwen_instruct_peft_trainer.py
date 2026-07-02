@@ -5,8 +5,7 @@ from integrated_information_theory.datasets.dataset_config import dataset_config
 class grpo_gsm8k_qwen_instruct_peft_trainer(grpo_peft_trainer): 
 
     def __init__(self, training_type):
-        # model_name = 'Qwen/Qwen2.5-3B-Instruct'
-        model_name = '/home/hr_akbari/.cache/huggingface/hub/models--Qwen--Qwen2.5-3B-Instruct/snapshots/aa8e72537993ba99e69dfaafa59ed015b17504d1'
+        model_name = 'Qwen/Qwen2.5-3B-Instruct'
         super().__init__(model_name, training_type)
 
     def get_dataset(self):

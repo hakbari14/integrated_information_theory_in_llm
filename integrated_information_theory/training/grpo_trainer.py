@@ -111,9 +111,9 @@ class grpo_trainer(ABC):
 
             try:
                 refine_prompt = self.representation.clean_prompt_for_phi(prompt)
-                prompt_emb, prompt_loss = self.representation.extract_representation(refine_prompt, model, tokenizer, self.get_layer_type())
+                prompt_emb, _, _ = self.representation.extract_representation(refine_prompt, model, tokenizer, self.get_layer_type())
                 entity.set_prompt_embedding(prompt_emb)
-                completion_emb, completion_loss = self.representation.extract_representation(completion, model, tokenizer, self.get_layer_type())
+                completion_emb, completion_loss, _ = self.representation.extract_representation(completion, model, tokenizer, self.get_layer_type())
                 entity.set_completion_loss(completion_loss)
                 entity.set_completion_embedding_and_shape(completion_emb)
                 entity.add_token_list(tokenizer, completion, completion_emb)

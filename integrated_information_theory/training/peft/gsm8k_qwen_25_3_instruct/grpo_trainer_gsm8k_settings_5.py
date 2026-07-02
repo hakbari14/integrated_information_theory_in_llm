@@ -15,7 +15,6 @@ class grpo_trainer_gsm8k_settings_5(grpo_gsm8k_qwen_instruct_peft_trainer):
         if self.model_config is None:
             self.model_config = ModelConfig(
                 model_name_or_path = self.model_name,
-                torch_dtype="bfloat16",
                 attn_implementation="flash_attention_2",
                 use_peft=True,
                 lora_r=1024,
@@ -41,7 +40,6 @@ class grpo_trainer_gsm8k_settings_5(grpo_gsm8k_qwen_instruct_peft_trainer):
                 gradient_checkpointing_kwargs={"use_reentrant": False},
                 bf16=True,
             
-                max_prompt_length=256,
                 max_completion_length=1024, 
                 num_generations=4,                      
                 generation_batch_size=144, 

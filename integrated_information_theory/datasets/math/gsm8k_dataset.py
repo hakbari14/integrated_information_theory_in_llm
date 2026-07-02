@@ -10,9 +10,8 @@ class gsm8k_dataset(math_dataset_handler):
 
     def __init__(self, config):
         super().__init__(config)
-        # self.dataset_id = "openai/gsm8k"
-        self.dataset_id = "/home/hr_akbari/.cache/huggingface/datasets/openai___gsm8k/main"
-        self.dataset = load_dataset(self.dataset_id, "")
+        self.dataset_id = "openai/gsm8k"
+        self.dataset = load_dataset(self.dataset_id, "main")
         self.train_dataset = self.dataset["train"]
         self.test_dataset = self.dataset["test"]
         
