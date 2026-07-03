@@ -3,7 +3,7 @@ from integrated_information_theory.datasets.dataset_config import dataset_config
 from integrated_information_theory.enums_class import llm_pipeline_type_enum
 from datasets import Dataset
 from datasets import load_dataset
-from integrated_information_theory.datasets.math.utils.evaluate_utils import extract_boxed_answer, use_math_verify
+from integrated_information_theory.datasets.math.utils.evaluate_utils import extract_last_boxed
 
 class open_thoughts_dataset(math_dataset_handler): 
 
@@ -36,7 +36,7 @@ class open_thoughts_dataset(math_dataset_handler):
                 }
 
     def final_answer_extraction(self, prompt, completion, target):
-        return extract_boxed_answer(completion)
+        return extract_last_boxed(completion)
 
     def filter_dataset(self, x):
         if x['correct'] != True:

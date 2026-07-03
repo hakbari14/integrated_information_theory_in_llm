@@ -186,7 +186,7 @@ class grpo_trainer(ABC):
                     log.set_completion_loss(my_utils.tensor_tostring(completion_loss))
                     log.set_perplexity(my_utils.calculate_perplexity(completion_loss))
 
-                answer, target_answer_equal, compared_final_answer = self.get_dataset().extract_and_verify_final_answer(completion, gt)
+                answer, target_answer_equal, compared_final_answer = self.get_dataset().extract_and_verify_final_answer(prompt, completion, gt)
                 if answer is None:
                     acc_reward = 0.0
                 else:
@@ -196,7 +196,7 @@ class grpo_trainer(ABC):
                 log.set_accuracy(acc_reward == 1.0)
                 log.set_accuracy_reward(acc_reward)
                 log.set_final_answer(answer)
-            except Exception:
+            except Exception as ex :
                 log.set_accuracy(False)
                 log.set_accuracy_reward(0.0)
                 rewards.append(0.0)
