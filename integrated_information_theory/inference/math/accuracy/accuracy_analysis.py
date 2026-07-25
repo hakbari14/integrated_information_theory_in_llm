@@ -12,7 +12,7 @@ class accuracy_analysis(object):
         for csv_path in csv_paths:
             model = accuracy_analysis.extract_first_number(csv_path)
             acc_list, mean_list = [], []
-            for run in range(1,6):
+            for run in range(6,11):
                 try:
                     filepath = f'{dir_}/{csv_path}'.replace('run_', f'run_{run}')
                     df = pd.read_csv(filepath)
@@ -77,40 +77,40 @@ class accuracy_analysis(object):
     def get_csv_paths():
         dir_ = './integrated_information_theory/inference/math/accuracy'
         csv_paths = [
-                        'settings_0/run_/settings_0_aime_full.csv',
-                        'settings_37/run_/settings_37_aime_full.csv',
-                        'settings_51/run_/settings_51_aime_full.csv',
-                        'settings_46/run_/settings_46_aime_full.csv',
-                        'settings_64/run_/settings_64_aime_full.csv',
-                        'settings_65/run_/settings_65_aime_full.csv',
+                        # 'settings_0/run_/settings_0_aime_full.csv',
+                        # 'settings_37/run_/settings_37_aime_full.csv',
+                        # 'settings_51/run_/settings_51_aime_full.csv',
+                        # 'settings_46/run_/settings_46_aime_full.csv',
+                        # 'settings_64/run_/settings_64_aime_full.csv',
+                        # 'settings_65/run_/settings_65_aime_full.csv',
                         
-                        'settings_0/run_/settings_0_math500_full.csv',
-                        'settings_37/run_/settings_37_math500_full.csv',
-                        'settings_51/run_/settings_51_math500_full.csv',
-                        'settings_46/run_/settings_46_math500_full.csv',
-                        'settings_64/run_/settings_64_math500_full.csv',
-                        'settings_65/run_/settings_65_math500_full.csv',
+                        # 'settings_0/run_/settings_0_math500_full.csv',
+                        # 'settings_37/run_/settings_37_math500_full.csv',
+                        # 'settings_51/run_/settings_51_math500_full.csv',
+                        # 'settings_46/run_/settings_46_math500_full.csv',
+                        # 'settings_64/run_/settings_64_math500_full.csv',
+                        # 'settings_65/run_/settings_65_math500_full.csv',
                         
-                        'settings_0/run_/settings_0_gsm8k_full.csv',
-                        'settings_37/run_/settings_37_gsm8k_full.csv',
+                        # 'settings_0/run_/settings_0_gsm8k_full.csv',
+                        # 'settings_37/run_/settings_37_gsm8k_full.csv',
                         'settings_51/run_/settings_51_gsm8k_full.csv',
-                        'settings_46/run_/settings_46_gsm8k_full.csv',
-                        'settings_64/run_/settings_64_gsm8k_full.csv',
-                        'settings_65/run_/settings_65_gsm8k_full.csv',
+                        # 'settings_46/run_/settings_46_gsm8k_full.csv',
+                        # 'settings_64/run_/settings_64_gsm8k_full.csv',
+                        # 'settings_65/run_/settings_65_gsm8k_full.csv',
                         
-                        'settings_0/run_/settings_0_gpqa_full.csv',
-                        'settings_37/run_/settings_37_gpqa_full.csv',
+                        # 'settings_0/run_/settings_0_gpqa_full.csv',
+                        # 'settings_37/run_/settings_37_gpqa_full.csv',
                         'settings_51/run_/settings_51_gpqa_full.csv',
-                        'settings_46/run_/settings_46_gpqa_full.csv',
-                        'settings_64/run_/settings_64_gpqa_full.csv',
-                        'settings_65/run_/settings_65_gpqa_full.csv',
+                        # 'settings_46/run_/settings_46_gpqa_full.csv',
+                        # 'settings_64/run_/settings_64_gpqa_full.csv',
+                        # 'settings_65/run_/settings_65_gpqa_full.csv',
 
-                        'settings_0/run_/settings_0_countdown_full.csv',
-                        'settings_37/run_/settings_37_countdown_full.csv',
+                        # 'settings_0/run_/settings_0_countdown_full.csv',
+                        # 'settings_37/run_/settings_37_countdown_full.csv',
                         'settings_51/run_/settings_51_countdown_full.csv',
-                        'settings_46/run_/settings_46_countdown_full.csv',
-                        'settings_64/run_/settings_64_countdown_full.csv',
-                        'settings_65/run_/settings_65_countdown_full.csv',
+                        # 'settings_46/run_/settings_46_countdown_full.csv',
+                        # 'settings_64/run_/settings_64_countdown_full.csv',
+                        # 'settings_65/run_/settings_65_countdown_full.csv',
                     ]
         return dir_, csv_paths
 

@@ -20,7 +20,7 @@ import pandas as pd
 from peft import PeftModel
 from vllm import LLM, SamplingParams
 import jsonlines
-from human_eval.evaluate_functional_correctness import evaluate_functional_correctness
+# from human_eval.evaluate_functional_correctness import evaluate_functional_correctness
 import numpy as np
 from pathlib import Path
 
@@ -91,7 +91,7 @@ class integrated_information_inference(ABC):
         model = LLM(model=self.model_name, tensor_parallel_size=1, trust_remote_code=True,)
         sampling_params = SamplingParams (
                 max_tokens=self.get_max_new_tokens(), 
-                temperature = 1.0, 
+                temperature = 0.7, 
                 top_p = 1.0, 
                 top_k = 50, 
                 repetition_penalty = 1.1, 
@@ -299,7 +299,7 @@ class integrated_information_inference(ABC):
         print(f"Generated samples saved to {self.get_output_file_path_code()}")
 
         print("\nRunning official HumanEval evaluation...")
-        result = evaluate_functional_correctness(self.get_output_file_path_code())
+        # result = evaluate_functional_correctness(self.get_output_file_path_code())
 
         result_file = self.get_output_file_path_code() + '_results.jsonl'
         result_df = pd.read_json(result_file, lines=True)        

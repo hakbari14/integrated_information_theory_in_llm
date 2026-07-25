@@ -22,4 +22,5 @@ dependencies = [
     "torch",
     "trl==1.6.0",
     "vllm==0.13.0",
+    "jsonlines",
 ]

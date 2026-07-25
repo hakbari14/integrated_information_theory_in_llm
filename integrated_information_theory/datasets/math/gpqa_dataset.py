@@ -13,7 +13,7 @@ class gpqa_dataset(math_dataset_handler):
     def __init__(self, config):
         super().__init__(config)
         
-        self.dataset_id = "/home/hr_akbari/research/LLM_PostTraining/integrated_information_theory/datasets/data/gpqa_diamond.csv"
+        self.dataset_id = "./integrated_information_theory/datasets/data/gpqa_diamond.csv"
         df = pd.read_csv(self.dataset_id)
         if config.get_ratio_test_dataset_size() is not None: 
             df = df.sample(frac=config.get_ratio_test_dataset_size(), random_state=42)
