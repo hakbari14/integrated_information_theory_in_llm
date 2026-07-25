@@ -1,5 +1,4 @@
 import os 
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 from integrated_information_theory.inference.integrated_information_inference import integrated_information_inference
 from integrated_information_theory.datasets.math.aime_dataset import aime_dataset
@@ -48,17 +47,17 @@ class iit_inference_aime_settings_0(integrated_information_inference):
         return self.logger
 
 
-# for run_number in range(1,6):
-#     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-#     t = iit_inference_aime_settings_0('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60',)
-#     t.get_logger(run_number=run_number)
-#     t.calculate_accuracy_vllm()
-#     print(f'{'*' * 210}')
-
-for run_number in range(2,6):
+for run_number in range(6,11):
     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-    t = iit_inference_aime_settings_0('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60',)
+    t = iit_inference_aime_settings_0('deepseek-ai/DeepSeek-R1-Distill-Qwen-7B',)
     t.get_logger(run_number=run_number)
-    t.calculate_and_update_iit(t.get_logger().get_log_file_name())
+    t.calculate_accuracy_vllm()
     print(f'{'*' * 210}')
+
+# for run_number in range(2,6):
+#     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
+#     t = iit_inference_aime_settings_0('deepseek-ai/DeepSeek-R1-Distill-Qwen-7B',)
+#     t.get_logger(run_number=run_number)
+#     t.calculate_and_update_iit(t.get_logger().get_log_file_name())
+#     print(f'{'*' * 210}')
 
