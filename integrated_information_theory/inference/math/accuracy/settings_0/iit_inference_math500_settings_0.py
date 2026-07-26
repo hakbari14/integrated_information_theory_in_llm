@@ -19,6 +19,9 @@ class iit_inference_math500_settings_0(integrated_information_inference):
     def get_iit_calculator(self):
         return None
 
+    def get_max_new_tokens(self):
+        return 15000
+
     def get_logger(self, run_number = 0):
         if self.logger is None:
             self.logger = inference_accuracy_logger(log_file_name = f'integrated_information_theory/inference/math/accuracy/settings_0/run_{run_number}/settings_0_math500_full.csv')

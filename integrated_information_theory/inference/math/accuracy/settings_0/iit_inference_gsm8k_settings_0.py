@@ -14,7 +14,6 @@ class iit_inference_gsm8k_settings_0(integrated_information_inference):
     def get_dataset(self):
         if self.dataset is None:
             config = dataset_config(self.model_name)
-            config.set_max_test_dataset_size(1)
             self.dataset = gsm8k_dataset(config)
         return self.dataset
 
