@@ -29,16 +29,16 @@ class iit_inference_gsm8k_settings_64(integrated_information_inference):
 
 
 
+for run_number in range(6,11):
+    print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
+    t = iit_inference_gsm8k_settings_64('hakbari/deepseek_r1_qwen_7B_iit_max_phi_s_64')
+    t.get_logger(run_number=run_number)
+    t.calculate_accuracy_vllm()
+    print(f'{'*' * 210}')
+
 # for run_number in range(1,6):
 #     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-#     t = iit_inference_gsm8k_settings_64('/home/hr_akbari/research/LLM_PostTraining/live_logs/settings_64/checkpoint-500-HF')
+#     t = iit_inference_gsm8k_settings_64('hakbari/deepseek_r1_qwen_7B_iit_max_phi_s_64')
 #     t.get_logger(run_number=run_number)
-#     t.calculate_accuracy_vllm()
+#     t.calculate_entropy(t.get_logger().get_log_file_name())
 #     print(f'{'*' * 210}')
-
-for run_number in range(1,6):
-    print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-    t = iit_inference_gsm8k_settings_64('/home/hr_akbari/research/LLM_PostTraining/live_logs/settings_64/checkpoint-500-HF')
-    t.get_logger(run_number=run_number)
-    t.calculate_entropy(t.get_logger().get_log_file_name())
-    print(f'{'*' * 210}')
