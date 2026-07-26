@@ -29,7 +29,7 @@ class iit_inference_countdown_settings_64(integrated_information_inference):
 
 
 
-for run_number in range(6,11):
+for run_number in range(11,16):
     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
     t = iit_inference_countdown_settings_64('deepseek-ai/DeepSeek-R1-Distill-Qwen-7B')
     t.get_logger(run_number=run_number)

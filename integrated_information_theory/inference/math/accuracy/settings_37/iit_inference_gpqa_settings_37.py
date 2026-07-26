@@ -31,7 +31,7 @@ class iit_inference_gpqa_settings_37(integrated_information_inference):
         return self.logger
 
 
-for run_number in range(6,11):
+for run_number in range(11,16):
     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
     t = iit_inference_gpqa_settings_37('hakbari/deepseek_r1_qwen_7B_iit_accuracy_reward_37')
     t.get_logger(run_number=run_number)
