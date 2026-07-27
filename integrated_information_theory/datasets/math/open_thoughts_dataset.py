@@ -47,7 +47,7 @@ class open_thoughts_dataset(math_dataset_handler):
     
     
 
-# config = dataset_config('/opt/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60')
+# config = dataset_config('deepseek-ai/DeepSeek-R1-Distill-Qwen-7B')
 # config.set_pipeline_type(llm_pipeline_type_enum.INFERENCE)
 # d = open_thoughts_dataset(config)
 # train_dataset, test_dataset = d.preprocess_dataset()
