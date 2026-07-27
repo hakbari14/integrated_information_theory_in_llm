@@ -12,7 +12,7 @@ class accuracy_analysis(object):
         for csv_path in csv_paths:
             model = accuracy_analysis.extract_first_number(csv_path)
             acc_list, mean_list = [], []
-            for run in range(6,11):
+            for run in range(11,16):
                 try:
                     filepath = f'{dir_}/{csv_path}'.replace('run_', f'run_{run}')
                     df = pd.read_csv(filepath)
