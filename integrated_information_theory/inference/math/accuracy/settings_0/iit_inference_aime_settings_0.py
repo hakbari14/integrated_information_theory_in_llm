@@ -38,7 +38,7 @@ class iit_inference_aime_settings_0(integrated_information_inference):
         return self.iit_calculator
 
     def get_max_new_tokens(self):
-        return 15000
+        return 35000
 
     def get_logger(self, run_number = 0):
         if self.logger is None:
