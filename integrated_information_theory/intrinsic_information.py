@@ -42,8 +42,14 @@ class intrinsic_information(integrated_information_theory):
 
                 p_unconstraint_effect = tbs_columns_average[effect_state]
                 p_selectivity = p_constraint_effect
+                p_informativeness = math.log(p_constraint_effect / p_unconstraint_effect)
+                
+                if not self.has_informativeness(): 
+                    p_informativeness = 1.0
+                if not self.has_selectivity(): 
+                    p_selectivity = 1.0
 
-                ii_e = p_selectivity * math.log(p_constraint_effect / p_unconstraint_effect)
+                ii_e = p_selectivity * p_informativeness
                 ii_effect_array[effect_state] = ii_e
             
             ii_cause_array = np.zeros((rows))
@@ -55,8 +61,14 @@ class intrinsic_information(integrated_information_theory):
 
                 p_unconstraint_cause = tbs_columns_average[current_state]
                 p_selectivity = p_constraint_cause / (tbs_columns_average[current_state] * rows)
+                p_informativeness = math.log(p_constraint_cause / p_unconstraint_cause)
+                
+                if not self.has_informativeness(): 
+                    p_informativeness = 1.0
+                if not self.has_selectivity(): 
+                    p_selectivity = 1.0
 
-                ii_cause = p_selectivity * math.log(p_constraint_cause / p_unconstraint_cause)
+                ii_cause = p_selectivity * p_informativeness
                 ii_cause_array[cause_state] = ii_cause
             
             effect_state_index = np.argmax(ii_effect_array)
@@ -119,3 +131,15 @@ class intrinsic_information(integrated_information_theory):
         
         avg_ii_value = total_ii_value / (len(markov_chain) -1)
         return avg_ii_value
+
+    def has_informativeness(self):
+        if self.get_config().get_has_informativeness() is None: 
+            return True
+        return self.get_config().get_has_informativeness()
+
+    def has_selectivity(self):
+        if self.get_config().get_has_selectivity() is None: 
+            return True
+        return self.get_config().get_has_selectivity()
+
+
