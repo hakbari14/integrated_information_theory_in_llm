@@ -11,10 +11,14 @@ class aime_dataset(math_dataset_handler):
     def __init__(self, config):
         super().__init__(config)
         self.dataset_id = "di-zhang-fdu/AIME_1983_2024" #"di-zhang-fdu/AIME_1983_2024"
-        # self.dataset_id = '/home/hr_akbari/.cache/huggingface/datasets/di-zhang-fdu___aime_1983_2024/default/0.0.0/3e2cc86390666c5c756622afc0eeb9e6194496bc'
         self.dataset = load_dataset(self.dataset_id)
         self.train_dataset = Dataset.from_dict({"prompt": [], "target": [], "problem_id" : []})
         self.test_dataset = self.dataset['train']
+
+        if llm_pipeline_type_enum.TRAINING == config.get_pipeline_type():
+            aime_dataset = self.test_dataset.train_test_split(test_size=0.1, seed=42, shuffle=True)
+            self.train_dataset = aime_dataset['train']
+            self.test_dataset = aime_dataset['test']
 
         if config.get_ratio_test_dataset_size() is not None: 
             self.test_dataset = self.test_dataset.train_test_split(test_size=config.get_ratio_test_dataset_size(), seed=42, shuffle=True)['test']
@@ -59,8 +63,8 @@ class aime_dataset(math_dataset_handler):
     
 
 
-# config = dataset_config('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60')
-# config.set_pipeline_type(llm_pipeline_type_enum.INFERENCE)
+# config = dataset_config('Qwen/Qwen3-8B')
+# config.set_pipeline_type(llm_pipeline_type_enum.TRAINING)
 # d = aime_dataset(config)
 # train_dataset, test_dataset = d.preprocess_dataset()
 # print(len(train_dataset))
