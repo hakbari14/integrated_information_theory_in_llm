@@ -29,6 +29,7 @@ class gpqa_dataset(math_dataset_handler):
             r'(?i)\bthe\s+correct\s+answer\s+is\s*[:\-\(]?\s*([ABCD])\b',
             r'(?i)\\?oxed\s*\{\s*\**\s*\(?\s*([ABCD])\s*\)?\s*\**\s*\}',            
             r'(?i)answer[\s:*()\[\]\-_=+\n\r\t]*(?:is[\s:*()\[\]\-_=+\n\r\t]*)?(?:option|choice)?[\s:*()\[\]\-_=+\n\r\t]*([ABCD])',
+            r'\\boxed\s*\{\s*\\text\s*\{\s*\(\s*([ABCDabcd])\s*\)',
         ]
 
         for pattern in patterns:

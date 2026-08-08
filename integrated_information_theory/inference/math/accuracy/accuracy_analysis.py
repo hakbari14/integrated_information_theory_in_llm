@@ -1,6 +1,8 @@
 import pandas as pd
 import re
 import numpy as np 
+from integrated_information_theory.datasets.math.gpqa_dataset import gpqa_dataset
+from integrated_information_theory.datasets.dataset_config import dataset_config
 
 class accuracy_analysis(object):
 
@@ -84,6 +86,28 @@ class accuracy_analysis(object):
         print('*****************************************************************************')
         print(row_46["Completion"])
 
+    @staticmethod
+    def update_final_answer():
+        for i in range(1,6):
+            log_file_name = './integrated_information_theory/inference/math/accuracy/settings_79/run_/settings_79_gpqa_full.csv'
+            log_file_name = log_file_name.replace('run_', f'run_{i}')
+            df = pd.read_csv(log_file_name)
+            config = dataset_config('/home/hr_akbari/research/integrated_information_theory_in_llm/live_logs/settings_79/checkpoint-1150-HF')
+            dataset = gpqa_dataset(config)
+
+            for index, row in df.iterrows():
+                if not pd.isna(df.loc[index, "Final_Answer"]): continue
+                if len(df.loc[index, "Completion"]) == 0: continue
+
+                prompt = df.loc[index, "Prompt"]
+                completion = df.loc[index, "Completion"]
+                target = df.loc[index, "Target"]
+                final_answer, target_answer_equal, _ = dataset.extract_and_verify_final_answer(prompt, completion , target)
+                df.at[index, "Final_Answer"] = final_answer
+                df.at[index, "Accuracy"] = target_answer_equal
+
+            print('*****************************************************************************')
+            df.to_csv(log_file_name, index=False)            
 
     @staticmethod
     def get_csv_paths():
@@ -119,6 +143,11 @@ class accuracy_analysis(object):
                         "from_run_number": 11,
                         "to_run_number": 16,
                         },
+            "aime_settings_79": {
+                        "file_paths": "math/accuracy/settings_79/run_/settings_79_aime_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
 
             "math500_settings_0": {
                         "file_paths": "math/accuracy/settings_0/run_/settings_0_math500_full.csv",
@@ -150,6 +179,11 @@ class accuracy_analysis(object):
                         "from_run_number": 11,
                         "to_run_number": 16,
                         },
+            "math500_settings_79": {
+                        "file_paths": "math/accuracy/settings_79/run_/settings_79_math500_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
 
             "gsm8k_settings_0": {
                         "file_paths": "math/accuracy/settings_0/run_/settings_0_gsm8k_full.csv",
@@ -180,6 +214,11 @@ class accuracy_analysis(object):
                         "file_paths": "math/accuracy/settings_65/run_/settings_65_gsm8k_full.csv",
                         "from_run_number": 11,
                         "to_run_number": 16,
+                        },
+            "gsm8k_settings_79": {
+                        "file_paths": "math/accuracy/settings_79/run_/settings_79_gsm8k_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
                         },
 
 
@@ -213,6 +252,11 @@ class accuracy_analysis(object):
                         "from_run_number": 11,
                         "to_run_number": 16,
                         },
+            "gpqa_settings_79": {
+                        "file_paths": "math/accuracy/settings_79/run_/settings_79_gpqa_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
 
 
             "countdown_settings_0": {
@@ -244,6 +288,11 @@ class accuracy_analysis(object):
                         "file_paths": "math/accuracy/settings_65/run_/settings_65_countdown_full.csv",
                         "from_run_number": 11,
                         "to_run_number": 16,
+                        },
+            "countdown_settings_79": {
+                        "file_paths": "math/accuracy/settings_79/run_/settings_79_countdown_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 3,
                         },
 
 
@@ -300,4 +349,4 @@ class accuracy_analysis(object):
 
 
 accuracy_analysis.calculate_accuracy()
-# accuracy_analysis.find_mean_length()
+# accuracy_analysis.update_final_answer()

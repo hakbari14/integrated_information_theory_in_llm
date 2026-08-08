@@ -2,6 +2,7 @@ class dataset_config:
 
     def __init__(self, model_name):
         self.model_name = model_name
+        self.pipeline_type = None
         self.max_prompt_length = None
         self.max_completion_length = None
         self.max_test_dataset_size = None

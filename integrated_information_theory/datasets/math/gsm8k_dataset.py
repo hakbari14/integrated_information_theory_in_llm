@@ -33,6 +33,7 @@ class gsm8k_dataset(math_dataset_handler):
             r'(?i)####\s*(-?[0-9.,]+)',
             r'(?i)\\boxed\{((?:[^{}]|\{[^{}]*\})*)\}',            
             r'(?i)\*[^*]*?(\d+(?:\.\d+)?)[^*]*?\*',            
+            r'(?i)#+\s*\\?\$(\d+)',            
         ]
 
         for pattern in patterns:
@@ -40,8 +41,11 @@ class gsm8k_dataset(math_dataset_handler):
             if not matches: continue
 
             last_match = matches[-1]
-            final_answer = self.extract_number(last_match.group(1))
-            return final_answer
+            x = last_match.group(1)
+            try:
+                return float(x.strip())
+            except ValueError:
+                return self.extract_number(x)
 
         return None
 
