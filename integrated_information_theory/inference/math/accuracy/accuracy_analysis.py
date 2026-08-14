@@ -143,6 +143,21 @@ class accuracy_analysis(object):
                         "from_run_number": 11,
                         "to_run_number": 16,
                         },
+            "aime_settings_00": {
+                        "file_paths": "math/accuracy/settings_00/run_/settings_00_aime_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "aime_settings_81": {
+                        "file_paths": "math/accuracy/settings_81/run_/settings_81_aime_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "aime_settings_82": {
+                        "file_paths": "math/accuracy/settings_82/run_/settings_82_aime_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
             "aime_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_aime_full.csv",
                         "from_run_number": 1,
@@ -179,6 +194,21 @@ class accuracy_analysis(object):
                         "from_run_number": 11,
                         "to_run_number": 16,
                         },
+            "math500_settings_00": {
+                        "file_paths": "math/accuracy/settings_00/run_/settings_00_math500_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "math500_settings_81": {
+                        "file_paths": "math/accuracy/settings_81/run_/settings_81_math500_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "math500_settings_82": {
+                        "file_paths": "math/accuracy/settings_82/run_/settings_82_math500_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
             "math500_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_math500_full.csv",
                         "from_run_number": 1,
@@ -214,6 +244,21 @@ class accuracy_analysis(object):
                         "file_paths": "math/accuracy/settings_65/run_/settings_65_gsm8k_full.csv",
                         "from_run_number": 11,
                         "to_run_number": 16,
+                        },
+            "gsm8k_settings_00": {
+                        "file_paths": "math/accuracy/settings_00/run_/settings_00_gsm8k_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "gsm8k_settings_81": {
+                        "file_paths": "math/accuracy/settings_81/run_/settings_81_gsm8k_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "gsm8k_settings_82": {
+                        "file_paths": "math/accuracy/settings_82/run_/settings_82_gsm8k_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
                         },
             "gsm8k_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_gsm8k_full.csv",
@@ -252,6 +297,21 @@ class accuracy_analysis(object):
                         "from_run_number": 11,
                         "to_run_number": 16,
                         },
+            "gpqa_settings_00": {
+                        "file_paths": "math/accuracy/settings_00/run_/settings_00_gpqa_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "gpqa_settings_81": {
+                        "file_paths": "math/accuracy/settings_81/run_/settings_81_gpqa_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "gpqa_settings_82": {
+                        "file_paths": "math/accuracy/settings_82/run_/settings_82_gpqa_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
             "gpqa_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_gpqa_full.csv",
                         "from_run_number": 1,
@@ -289,10 +349,25 @@ class accuracy_analysis(object):
                         "from_run_number": 11,
                         "to_run_number": 16,
                         },
+            "countdown_settings_00": {
+                        "file_paths": "math/accuracy/settings_00/run_/settings_00_countdown_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "countdown_settings_81": {
+                        "file_paths": "math/accuracy/settings_81/run_/settings_81_countdown_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "countdown_settings_82": {
+                        "file_paths": "math/accuracy/settings_82/run_/settings_82_countdown_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
             "countdown_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_countdown_full.csv",
                         "from_run_number": 1,
-                        "to_run_number": 3,
+                        "to_run_number": 6,
                         },
 
 
@@ -345,7 +420,7 @@ class accuracy_analysis(object):
         if not match:
             return None
         
-        return float(match.group()) if '.' in match.group() else int(match.group())
+        return float(match.group()) if '.' in match.group() else match.group()
 
 
 accuracy_analysis.calculate_accuracy()
