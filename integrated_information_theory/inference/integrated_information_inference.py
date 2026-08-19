@@ -92,7 +92,7 @@ class integrated_information_inference(ABC):
         model = LLM(model=self.model_name, tensor_parallel_size=1, trust_remote_code=True,)
         sampling_params = SamplingParams (
                 max_tokens=self.get_max_new_tokens(), 
-                temperature = 0.2, 
+                temperature = 0.7, 
                 top_p = 1.0, 
                 top_k = 50, 
                 repetition_penalty = 1.1, 

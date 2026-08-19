@@ -43,7 +43,7 @@ class iit_inference_aime_settings_79(integrated_information_inference):
 
 for run_number in range(1,6):
     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-    t = iit_inference_aime_settings_79('/home/hr_akbari/research/integrated_information_theory_in_llm/live_logs/settings_79/checkpoint-1150-HF')
+    t = iit_inference_aime_settings_79('hakbari/deepseek_r1_qwen_7B_iit_intrinsic_information_79')
     t.get_logger(run_number=run_number)
     t.calculate_accuracy_vllm()
     print(f'{'*' * 210}')
