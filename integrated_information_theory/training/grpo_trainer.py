@@ -23,7 +23,7 @@ class grpo_trainer(ABC):
         self.training_type = training_type
         if self.training_type is None:
             raise Exception('training type is required')
-        if training_type_enum.BASELINE != self.training_type and training_type_enum.IIT != self.training_type and training_type_enum.ENTROPY != self.training_type:
+        if training_type_enum.BASELINE != self.training_type and training_type_enum.IIT != self.training_type and training_type_enum.ENTROPY != self.training_type and training_type_enum.ADAPTIVE_LENGTH_PENALTY != self.training_type:
             raise Exception('training type has not been correctly determined')
 
         self.representation = llm_representation()
@@ -39,6 +39,8 @@ class grpo_trainer(ABC):
         self.current_step_accuracy = None
         self.old_step_tokens_count = None
         self.current_step_tokens_count = None
+        self.lambda_t = 1e-3
+        self.eta = 1e-3
 
     def train(self):
         trainer = self.get_trainer()
@@ -73,6 +75,8 @@ class grpo_trainer(ABC):
             return [self.accuracy_reward]
         elif training_type_enum.ENTROPY == self.training_type:
             return [self.accuracy_reward, self.calculate_entropy_reward]
+        elif training_type_enum.ADAPTIVE_LENGTH_PENALTY == self.training_type:
+            return [self.accuracy_reward, self.calculate_adaptive_length_reward]
         else:
             return []
 
@@ -246,6 +250,51 @@ class grpo_trainer(ABC):
                 rewards.append(0.0)
                 log.set_entropy_reward(0.0)
                 print(f"[WARN] calculate_entropy_reward: {e}")
+
+            self.get_logger().add_to_buffer(log)
+    
+        self.get_logger().write_to_log_file()
+        return rewards
+
+    @torch.inference_mode()
+    def calculate_adaptive_length_reward(self, completions, target=None, tokenizer=None, **kwargs):
+        prompts = kwargs.get("prompts") or kwargs.get("prompt") or kwargs.get("inputs")
+        split_list = kwargs.get("split")     # list[str], e.g. "train"/"eval"
+        sample_ids = kwargs.get("sample_id") # list[int]
+        problem_ids = kwargs.get("problem_id", None)
+        trainer_state = kwargs.get("trainer_state", None)
+
+        trainer = self.get_trainer()
+        model = trainer.model
+        tokenizer = trainer.processing_class
+
+        accuracy_t = self.current_step_accuracy
+        self.lambda_t = max(0, self.lambda_t + self.eta * (accuracy_t - self.accuracy_ref))
+
+        rewards = []
+        for i, (prompt, completion) in enumerate(zip(prompts, completions)):
+            split = split_list[i]
+            sample_ID = sample_ids[i]
+            problem_id = problem_ids[i] if problem_ids is not None else None
+            prompt = prompts[i]
+            trainer_global_step = trainer_state.global_step
+            ground_truth = target[i]
+            log = training_log_entity(sample_ID, problem_id, split, trainer_global_step, prompt, ground_truth, completion)
+
+            try:
+                tokens = tokenizer.encode(completion, add_special_tokens=False)
+                log.set_token_count(len(tokens))
+
+                reward = -1.0 * self.lambda_t * len(tokens)
+                log.set_adaptive_length_reward(reward)
+                rewards.append(reward)
+
+                gc.collect()
+                torch.cuda.empty_cache()
+            except Exception as e:
+                rewards.append(0.0)
+                log.set_adaptive_length_reward(0.0)
+                print(f"[WARN] calculate_adaptive_length_reward: {e}")
 
             self.get_logger().add_to_buffer(log)
     

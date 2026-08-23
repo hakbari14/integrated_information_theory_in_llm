@@ -113,6 +113,11 @@ class accuracy_analysis(object):
     def get_csv_paths():
         dir = './integrated_information_theory/inference'
         csv_paths = {
+            "open_thoughts_settings_0": {
+                        "file_paths": "math/accuracy/settings_0/run_/settings_0_open_thoughts_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 2,
+                        },
             "aime_settings_0": {
                         "file_paths": "math/accuracy/settings_0/run_/settings_0_aime_full.csv",
                         "from_run_number": 11,

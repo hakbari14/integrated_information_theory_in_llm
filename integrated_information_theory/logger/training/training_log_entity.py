@@ -8,6 +8,7 @@ class training_log_entity(log_entity):
         self.completion = completion
         self.accuracy_reward = None
         self.entropy_reward = None
+        self.adaptive_length_reward = None
 
     def validate(self): 
         super().validate()
@@ -39,3 +40,9 @@ class training_log_entity(log_entity):
 
     def set_entropy_reward(self, value):
         self.entropy_reward = value
+
+    def get_adaptive_length_reward(self):
+        return self.adaptive_length_reward
+
+    def set_adaptive_length_reward(self, value):
+        self.adaptive_length_reward = value

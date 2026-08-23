@@ -43,6 +43,7 @@ class training_type_enum(StrEnum):
     BASELINE = 'baseline'
     IIT = 'iit'
     ENTROPY = 'entropy'
+    ADAPTIVE_LENGTH_PENALTY = 'adaptive_length_penalty'
 
 class llm_pipeline_type_enum(StrEnum):
     TRAINING = 'training'
