@@ -13,7 +13,7 @@ class self_explanations_faithfulness_accuracy(object):
         for csv_path in csv_paths:
             model = self_explanations_faithfulness_accuracy.extract_first_number(csv_path)
             nsg_list = []
-            for run in range(1,6):
+            for run in range(1,5):
                 try:
                     filepath = f'{dir_}/{csv_path}'.replace('run_', f'run_{run}')
                     df = pd.read_parquet(filepath)
@@ -105,7 +105,7 @@ class self_explanations_faithfulness_accuracy(object):
         dir_ = '/home/hr_akbari/research/faithfulness/experiments'
         csv_paths = [
                         
-                        'run_/predictor_answers_settings_0.parquet',
+                        'run_/predictor_answers_settings_83.parquet',
                         # 'run_/predictor_answers_settings_37.parquet',
                         # 'run_/predictor_answers_settings_51.parquet',
                         # 'run_/predictor_answers_settings_46.parquet',
@@ -133,6 +133,6 @@ class self_explanations_faithfulness_accuracy(object):
 # self_explanations_faithfulness_accuracy.calculate_accuracy()
 # self_explanations_faithfulness_accuracy.extract_good_case()
 # self_explanations_faithfulness_accuracy.print(758)
-self_explanations_faithfulness_accuracy.convert_csv()
+self_explanations_faithfulness_accuracy.calculate_accuracy()
 
 
