@@ -102,10 +102,10 @@ class self_explanations_faithfulness_accuracy(object):
 
     @staticmethod
     def get_csv_paths():
-        dir_ = '/home/hr_akbari/research/faithfulness/experiments'
+        dir_ = 'integrated_information_theory/inference/faithfulness/self_explanations/'
         csv_paths = [
                         
-                        'run_/predictor_answers_settings_83.parquet',
+                        'settings_83/run_/predictor_answers_settings_83.parquet',
                         # 'run_/predictor_answers_settings_37.parquet',
                         # 'run_/predictor_answers_settings_51.parquet',
                         # 'run_/predictor_answers_settings_46.parquet',
