@@ -13,7 +13,7 @@ class self_explanations_faithfulness_accuracy(object):
         for csv_path in csv_paths:
             model = self_explanations_faithfulness_accuracy.extract_first_number(csv_path)
             nsg_list = []
-            for run in range(1,5):
+            for run in range(1,6):
                 try:
                     filepath = f'{dir_}/{csv_path}'.replace('run_', f'run_{run}')
                     df = pd.read_parquet(filepath)
@@ -105,12 +105,13 @@ class self_explanations_faithfulness_accuracy(object):
         dir_ = 'integrated_information_theory/inference/faithfulness/self_explanations/'
         csv_paths = [
                         
+                        # 'settings_0/run_/predictor_answers_settings_0.parquet',
+                        # 'settings_37/run_/predictor_answers_settings_37.parquet',
+                        # 'settings_51/run_/predictor_answers_settings_51.parquet',
+                        'settings_46/run_/predictor_answers_settings_46.parquet',
+                        # 'settings_64/run_/predictor_answers_settings_64.parquet',
+                        # 'settings_65/run_/predictor_answers_settings_65.parquet',
                         'settings_83/run_/predictor_answers_settings_83.parquet',
-                        # 'run_/predictor_answers_settings_37.parquet',
-                        # 'run_/predictor_answers_settings_51.parquet',
-                        # 'run_/predictor_answers_settings_46.parquet',
-                        # 'run_/predictor_answers_settings_64.parquet',
-                        # 'run_/predictor_answers_settings_65.parquet',
                     ]
         return dir_, csv_paths
 
