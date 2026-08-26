@@ -105,12 +105,12 @@ class self_explanations_faithfulness_accuracy(object):
         dir_ = 'integrated_information_theory/inference/faithfulness/self_explanations/'
         csv_paths = [
                         
-                        # 'settings_0/run_/predictor_answers_settings_0.parquet',
-                        # 'settings_37/run_/predictor_answers_settings_37.parquet',
-                        # 'settings_51/run_/predictor_answers_settings_51.parquet',
+                        'settings_0/run_/predictor_answers_settings_0.parquet',
+                        'settings_37/run_/predictor_answers_settings_37.parquet',
+                        'settings_51/run_/predictor_answers_settings_51.parquet',
                         'settings_46/run_/predictor_answers_settings_46.parquet',
-                        # 'settings_64/run_/predictor_answers_settings_64.parquet',
-                        # 'settings_65/run_/predictor_answers_settings_65.parquet',
+                        'settings_64/run_/predictor_answers_settings_64.parquet',
+                        'settings_65/run_/predictor_answers_settings_65.parquet',
                         'settings_83/run_/predictor_answers_settings_83.parquet',
                     ]
         return dir_, csv_paths
