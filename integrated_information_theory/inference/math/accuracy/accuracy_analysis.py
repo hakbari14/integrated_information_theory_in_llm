@@ -183,6 +183,11 @@ class accuracy_analysis(object):
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
+            "aime_settings_84": {
+                        "file_paths": "math/accuracy/settings_84/run_/settings_84_aime_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
 
             "math500_settings_0": {
                         "file_paths": "math/accuracy/settings_0/run_/settings_0_math500_full.csv",
@@ -239,6 +244,11 @@ class accuracy_analysis(object):
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
+            "math500_settings_84": {
+                        "file_paths": "math/accuracy/settings_84/run_/settings_84_math500_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
 
             "gsm8k_settings_0": {
                         "file_paths": "math/accuracy/settings_0/run_/settings_0_gsm8k_full.csv",
@@ -292,6 +302,11 @@ class accuracy_analysis(object):
                         },
             "gsm8k_settings_83": {
                         "file_paths": "math/accuracy/settings_83/run_/settings_83_gsm8k_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "gsm8k_settings_84": {
+                        "file_paths": "math/accuracy/settings_84/run_/settings_84_gsm8k_full.csv",
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
@@ -352,6 +367,11 @@ class accuracy_analysis(object):
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
+            "gpqa_settings_84": {
+                        "file_paths": "math/accuracy/settings_84/run_/settings_84_gpqa_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
 
 
             "countdown_settings_0": {
@@ -406,6 +426,11 @@ class accuracy_analysis(object):
                         },
             "countdown_settings_83": {
                         "file_paths": "math/accuracy/settings_83/run_/settings_83_countdown_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "countdown_settings_84": {
+                        "file_paths": "math/accuracy/settings_84/run_/settings_84_countdown_full.csv",
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
