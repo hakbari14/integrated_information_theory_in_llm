@@ -994,7 +994,7 @@ wheels = [
 [[package]]
 name = "human-eval"
 version = "1.0"
-source = { editable = "human-eval" }
+source = { editable = "../human-eval" }
 
 [[package]]
 name = "idna"
@@ -1039,7 +1039,7 @@ requires-dist = [
     { name = "deepspeed" },
     { name = "fire" },
     { name = "huggingface-hub" },
-    { name = "human-eval", editable = "human-eval" },
+    { name = "human-eval", editable = "../human-eval" },
     { name = "jsonlines" },
     { name = "math-verify" },
     { name = "matplotlib" },
