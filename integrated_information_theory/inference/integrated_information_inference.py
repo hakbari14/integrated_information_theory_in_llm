@@ -20,7 +20,7 @@ import pandas as pd
 from peft import PeftModel
 from vllm import LLM, SamplingParams
 import jsonlines
-# from human_eval.evaluate_functional_correctness import evaluate_functional_correctness
+from human_eval.evaluate_functional_correctness import evaluate_functional_correctness
 import numpy as np
 from pathlib import Path
 
@@ -242,7 +242,7 @@ class integrated_information_inference(ABC):
         return None
 
     @torch.inference_mode()
-    def calculate_accuracy_code(self, batch_size = 128): 
+    def calculate_accuracy_code(self, run_number, batch_size = 128): 
         _, test_dataset = self.get_dataset().preprocess_dataset()
 
         print('Stage: Output generation')
@@ -295,14 +295,14 @@ class integrated_information_inference(ABC):
             except Exception as e:
                 print(f"[WARN] generate failed: {e}")
 
-        with jsonlines.open(self.get_output_file_path_code(), 'w') as writer:
+        with jsonlines.open(self.get_output_file_path_code(run_number), 'w') as writer:
             writer.write_all(samples)
-        print(f"Generated samples saved to {self.get_output_file_path_code()}")
+        print(f"Generated samples saved to {self.get_output_file_path_code(run_number)}")
 
         print("\nRunning official HumanEval evaluation...")
-        # result = evaluate_functional_correctness(self.get_output_file_path_code())
+        result = evaluate_functional_correctness(self.get_output_file_path_code(run_number), n_workers=1)
 
-        result_file = self.get_output_file_path_code() + '_results.jsonl'
+        result_file = self.get_output_file_path_code(run_number) + '_results.jsonl'
         result_df = pd.read_json(result_file, lines=True)        
         for index, row in result_df.iterrows():
             item_log_list = list(filter(lambda x: x.get_problem_id() == result_df.loc[index, "task_id"] , log_list))
@@ -646,7 +646,7 @@ class integrated_information_inference(ABC):
 
     
     def calculate_entropy(self, full_path_file_name):
-        print(f'{'*' * 100} Calculate Entropy {'*' * 100}')
+        print(f"{'*' * 100} Calculate Entropy {'*' * 100}")
         try:
             df = pd.read_csv(full_path_file_name)
 
@@ -677,7 +677,7 @@ class integrated_information_inference(ABC):
             print(f"{full_path_file_name}: {e}")
 
     def calculate_and_update_iit(self, full_path_file_name):
-        print(f'{'*' * 100} Calculate IIT {'*' * 100}')
+        print(f"{'*' * 100} Calculate IIT {'*' * 100}")
         try:
             df = pd.read_csv(full_path_file_name)
 

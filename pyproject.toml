@@ -3,7 +3,7 @@ name = "iit"
 version = "0.1.0"
 description = "Integrated Information Theory in LLM project"
 readme = "README.md"
-requires-python = "==3.12.10"
+requires-python = "==3.11.15"
 
 dependencies = [
     "transformers",
@@ -23,4 +23,12 @@ dependencies = [
     "trl==1.6.0",
     "vllm==0.13.0",
     "jsonlines",
+    "human-eval",
+    "fire",
+    "numpy",
+    "pandas",
 ]
+
+[tool.uv.sources]
+human-eval = { path = "./human-eval", editable = true }
+

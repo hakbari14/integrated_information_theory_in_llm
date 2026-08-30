@@ -19,15 +19,20 @@ class iit_inference_humaneval_settings_0(integrated_information_inference):
     def get_iit_calculator(self):
         return None
 
-    def get_output_file_path_code(self):
-        return 'integrated_information_theory/inference/code/humaneval/accuracy/humaneval_result_settings_0'
+    def get_output_file_path_code(self, run_number = 0):
+        return f'integrated_information_theory/inference/code/humaneval/accuracy/run_{run_number}/humaneval_result_settings_0'
 
-    def get_logger(self):
+    def get_logger(self, run_number = 0):
         if self.logger is None:
-            self.logger = inference_code_logger(log_file_name = 'integrated_information_theory/inference/code/humaneval/accuracy/settings_0_humaneval.csv')
+            self.logger = inference_code_logger(log_file_name = f'integrated_information_theory/inference/code/humaneval/accuracy/run_{run_number}/settings_0_humaneval.csv')
 
         return self.logger
 
 
-t = iit_inference_humaneval_settings_0('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60')
-t.calculate_accuracy_code()
+for run_number in range(1,6):
+    print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
+    t = iit_inference_humaneval_settings_0('deepseek-ai/DeepSeek-R1-Distill-Qwen-7B')
+    t.get_logger(run_number=run_number)
+    t.calculate_accuracy_code(run_number)
+    print(f"{'*' * 210}")
+

@@ -466,6 +466,36 @@ class accuracy_analysis(object):
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
+            "humaneval_settings_83": {
+                        "file_paths": "code/humaneval/accuracy/run_/settings_83_humaneval.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "humaneval_settings_00": {
+                        "file_paths": "code/humaneval/accuracy/run_/settings_00_humaneval.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "humaneval_settings_79": {
+                        "file_paths": "code/humaneval/accuracy/run_/settings_79_humaneval.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "humaneval_settings_81": {
+                        "file_paths": "code/humaneval/accuracy/run_/settings_81_humaneval.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "humaneval_settings_82": {
+                        "file_paths": "code/humaneval/accuracy/run_/settings_82_humaneval.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "humaneval_settings_84": {
+                        "file_paths": "code/humaneval/accuracy/run_/settings_84_humaneval.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
 
         }
         

@@ -19,15 +19,19 @@ class iit_inference_humaneval_settings_37(integrated_information_inference):
     def get_iit_calculator(self):
         return None
 
-    def get_output_file_path_code(self):
-        return 'integrated_information_theory/inference/code/humaneval/accuracy/humaneval_result_settings_37'
+    def get_output_file_path_code(self, run_number = 0):
+        return f'integrated_information_theory/inference/code/humaneval/accuracy/run_{run_number}/humaneval_result_settings_37'
 
-    def get_logger(self):
+    def get_logger(self, run_number = 0):
         if self.logger is None:
-            self.logger = inference_code_logger(log_file_name = 'integrated_information_theory/inference/code/humaneval/accuracy/settings_37_humaneval.csv')
+            self.logger = inference_code_logger(log_file_name = f'integrated_information_theory/inference/code/humaneval/accuracy/run_{run_number}/settings_37_humaneval.csv')
 
         return self.logger
 
 
-t = iit_inference_humaneval_settings_37('/home/hr_akbari/research/LLM_PostTraining/live_logs/settings_37/checkpoint-1200-HF')
-t.calculate_accuracy_code()
+for run_number in range(1,6):
+    print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
+    t = iit_inference_humaneval_settings_37('hakbari/deepseek_r1_qwen_7B_iit_accuracy_reward_37')
+    t.get_logger(run_number=run_number)
+    t.calculate_accuracy_code(run_number)
+    print(f"{'*' * 210}")

@@ -33,14 +33,14 @@ class iit_inference_countdown_settings_84(integrated_information_inference):
 
 for run_number in range(1,6):
     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-    t = iit_inference_countdown_settings_84('/home/hr_akbari/research/integrated_information_theory_in_llm/live_logs/settings_84/checkpoint-950-HF')
+    t = iit_inference_countdown_settings_84('hakbari/qwen3-8b_adaptive_length_penalty_84')
     t.get_logger(run_number=run_number)
     t.calculate_accuracy_vllm()
     print(f'{'*' * 210}')
 
 # for run_number in range(1,6):
 #     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-#     t = iit_inference_countdown_settings_84('hakbari/deepseek_r1_qwen_7B_iit_intrinsic_information_84')
+#     t = iit_inference_countdown_settings_84('hakbari/qwen3-8b_adaptive_length_penalty_84')
 #     t.get_logger(run_number=run_number)
 #     t.calculate_entropy(t.get_logger().get_log_file_name())
 #     print(f'{'*' * 210}')

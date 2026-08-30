@@ -8,7 +8,7 @@ class code_accuracy_analysis(object):
         dir_, csv_paths = code_accuracy_analysis.get_csv_paths()
         for csv_path in csv_paths:
             acc_list, mean_list = [], []
-            for run in range(1,6):
+            for run in range(6,7):
                 try:
                     df = pd.read_csv(f'{dir_}/run{run}/{csv_path}')
 
@@ -31,11 +31,11 @@ class code_accuracy_analysis(object):
         dir_ = './integrated_information_theory/inference/code/humaneval/accuracy/'
         csv_paths = [
                         'settings_0_humaneval.csv',
-                        'settings_37_humaneval.csv',
-                        'settings_51_humaneval.csv',
-                        'settings_46_humaneval.csv',
-                        'settings_64_humaneval.csv',
-                        'settings_65_humaneval.csv',
+                        # 'settings_37_humaneval.csv',
+                        # 'settings_51_humaneval.csv',
+                        # 'settings_46_humaneval.csv',
+                        # 'settings_64_humaneval.csv',
+                        # 'settings_65_humaneval.csv',
                     ]
         return dir_, csv_paths
 
