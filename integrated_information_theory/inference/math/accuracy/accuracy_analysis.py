@@ -234,6 +234,11 @@ class accuracy_analysis(object):
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
+            "math500_settings_77": {
+                        "file_paths": "math/accuracy/settings_77/run_/settings_77_math500_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
             "math500_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_math500_full.csv",
                         "from_run_number": 1,
@@ -292,6 +297,11 @@ class accuracy_analysis(object):
                         },
             "gsm8k_settings_82": {
                         "file_paths": "math/accuracy/settings_82/run_/settings_82_gsm8k_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "gsm8k_settings_77": {
+                        "file_paths": "math/accuracy/settings_77/run_/settings_77_gsm8k_full.csv",
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
@@ -357,6 +367,11 @@ class accuracy_analysis(object):
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
+            "gpqa_settings_77": {
+                        "file_paths": "math/accuracy/settings_77/run_/settings_77_gpqa_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
             "gpqa_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_gpqa_full.csv",
                         "from_run_number": 1,
@@ -403,6 +418,11 @@ class accuracy_analysis(object):
                         "file_paths": "math/accuracy/settings_65/run_/settings_65_countdown_full.csv",
                         "from_run_number": 11,
                         "to_run_number": 16,
+                        },
+            "countdown_settings_77": {
+                        "file_paths": "math/accuracy/settings_77/run_/settings_77_countdown_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
                         },
             "countdown_settings_00": {
                         "file_paths": "math/accuracy/settings_00/run_/settings_00_countdown_full.csv",
@@ -473,6 +493,11 @@ class accuracy_analysis(object):
                         },
             "humaneval_settings_00": {
                         "file_paths": "code/humaneval/accuracy/run_/settings_00_humaneval.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 6,
+                        },
+            "humaneval_settings_77": {
+                        "file_paths": "code/humaneval/accuracy/run_/settings_77_humaneval.csv",
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
