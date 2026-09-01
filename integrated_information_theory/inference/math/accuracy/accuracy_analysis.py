@@ -173,6 +173,11 @@ class accuracy_analysis(object):
                         "from_run_number": 1,
                         "to_run_number": 6,
                         },
+            "aime_settings_77": {
+                        "file_paths": "math/accuracy/settings_77/run_/settings_77_aime_full.csv",
+                        "from_run_number": 1,
+                        "to_run_number": 2,
+                        },
             "aime_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_aime_full.csv",
                         "from_run_number": 1,
