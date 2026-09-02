@@ -252,7 +252,7 @@ class accuracy_analysis(object):
             "math500_settings_78": {
                         "file_paths": "math/accuracy/settings_78/run_/settings_78_math500_full.csv",
                         "from_run_number": 1,
-                        "to_run_number": 2,
+                        "to_run_number": 6,
                         },
             "math500_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_math500_full.csv",
