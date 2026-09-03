@@ -181,7 +181,7 @@ class accuracy_analysis(object):
             "aime_settings_78": {
                         "file_paths": "math/accuracy/settings_78/run_/settings_78_aime_full.csv",
                         "from_run_number": 1,
-                        "to_run_number": 1,
+                        "to_run_number": 6,
                         },
             "aime_settings_79": {
                         "file_paths": "math/accuracy/settings_79/run_/settings_79_aime_full.csv",
@@ -564,7 +564,7 @@ class accuracy_analysis(object):
 
     @staticmethod
     def aggregate_mean_pandas_rounded(df, group_cols, value_cols) -> pd.DataFrame:
-        result = df.groupby(group_cols)[value_cols].mean().reset_index()
+        result = df.groupby(group_cols)[value_cols].agg(['mean', 'std']).reset_index()
         for col in value_cols:
             result[col] = result[col].round(3)
         return result
