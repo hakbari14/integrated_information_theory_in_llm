@@ -88,4 +88,3 @@ class my_utils(object):
         merged_df = pd.concat(df_list, ignore_index=True)
         merged_df.to_csv(f'{directory_full_path}/{file_name}', index=False)
 
-my_utils.convert_model_into_hugginfacces('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60', 'live_logs/settings_78/checkpoint-600')

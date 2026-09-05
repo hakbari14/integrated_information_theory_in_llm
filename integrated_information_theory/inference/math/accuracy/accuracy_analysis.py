@@ -113,91 +113,91 @@ class accuracy_analysis(object):
     def get_csv_paths():
         dir = './integrated_information_theory/inference'
         csv_paths = {
-            "open-thoughts_settings_0": {
-                        "file_paths": "math/accuracy/settings_0/run_/settings_0_open_thoughts_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 2,
-                        },
-            "aime_settings_0": {
-                        "file_paths": "math/accuracy/settings_0/run_/settings_0_aime_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "aime_settings_37": {
-                        "file_paths": "math/accuracy/settings_37/run_/settings_37_aime_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "aime_settings_51": {
-                        "file_paths": "math/accuracy/settings_51/run_/settings_51_aime_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "aime_settings_46": {
-                        "file_paths": "math/accuracy/settings_46/run_/settings_46_aime_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "aime_settings_64": {
-                        "file_paths": "math/accuracy/settings_64/run_/settings_64_aime_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "aime_settings_65": {
-                        "file_paths": "math/accuracy/settings_65/run_/settings_65_aime_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "aime_settings_80": {
-                        "file_paths": "math/accuracy/settings_80/run_/settings_80_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "open-thoughts_settings_00": {
-                        "file_paths": "math/accuracy/settings_00/run_/settings_00_open_thoughts_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 2,
-                        },
-            "aime_settings_00": {
-                        "file_paths": "math/accuracy/settings_00/run_/settings_00_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "aime_settings_81": {
-                        "file_paths": "math/accuracy/settings_81/run_/settings_81_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "aime_settings_82": {
-                        "file_paths": "math/accuracy/settings_82/run_/settings_82_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "aime_settings_77": {
-                        "file_paths": "math/accuracy/settings_77/run_/settings_77_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "aime_settings_78": {
-                        "file_paths": "math/accuracy/settings_78/run_/settings_78_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "aime_settings_79": {
-                        "file_paths": "math/accuracy/settings_79/run_/settings_79_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "aime_settings_83": {
-                        "file_paths": "math/accuracy/settings_83/run_/settings_83_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "aime_settings_84": {
-                        "file_paths": "math/accuracy/settings_84/run_/settings_84_aime_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
+            # "open-thoughts_settings_0": {
+            #             "file_paths": "math/accuracy/settings_0/run_/settings_0_open_thoughts_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 2,
+            #             },
+            # "aime_settings_0": {
+            #             "file_paths": "math/accuracy/settings_0/run_/settings_0_aime_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "aime_settings_37": {
+            #             "file_paths": "math/accuracy/settings_37/run_/settings_37_aime_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "aime_settings_51": {
+            #             "file_paths": "math/accuracy/settings_51/run_/settings_51_aime_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "aime_settings_46": {
+            #             "file_paths": "math/accuracy/settings_46/run_/settings_46_aime_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "aime_settings_64": {
+            #             "file_paths": "math/accuracy/settings_64/run_/settings_64_aime_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "aime_settings_65": {
+            #             "file_paths": "math/accuracy/settings_65/run_/settings_65_aime_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "aime_settings_80": {
+            #             "file_paths": "math/accuracy/settings_80/run_/settings_80_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "open-thoughts_settings_00": {
+            #             "file_paths": "math/accuracy/settings_00/run_/settings_00_open_thoughts_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 2,
+            #             },
+            # "aime_settings_00": {
+            #             "file_paths": "math/accuracy/settings_00/run_/settings_00_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "aime_settings_81": {
+            #             "file_paths": "math/accuracy/settings_81/run_/settings_81_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "aime_settings_82": {
+            #             "file_paths": "math/accuracy/settings_82/run_/settings_82_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "aime_settings_77": {
+            #             "file_paths": "math/accuracy/settings_77/run_/settings_77_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "aime_settings_78": {
+            #             "file_paths": "math/accuracy/settings_78/run_/settings_78_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "aime_settings_79": {
+            #             "file_paths": "math/accuracy/settings_79/run_/settings_79_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "aime_settings_83": {
+            #             "file_paths": "math/accuracy/settings_83/run_/settings_83_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "aime_settings_84": {
+            #             "file_paths": "math/accuracy/settings_84/run_/settings_84_aime_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
 
             "math500_settings_0": {
                         "file_paths": "math/accuracy/settings_0/run_/settings_0_math500_full.csv",
@@ -414,76 +414,76 @@ class accuracy_analysis(object):
                         },
 
 
-            "countdown_settings_0": {
-                        "file_paths": "math/accuracy/settings_0/run_/settings_0_countdown_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "countdown_settings_37": {
-                        "file_paths": "math/accuracy/settings_37/run_/settings_37_countdown_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "countdown_settings_51": {
-                        "file_paths": "math/accuracy/settings_51/run_/settings_51_countdown_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "countdown_settings_46": {
-                        "file_paths": "math/accuracy/settings_46/run_/settings_46_countdown_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "countdown_settings_64": {
-                        "file_paths": "math/accuracy/settings_64/run_/settings_64_countdown_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "countdown_settings_65": {
-                        "file_paths": "math/accuracy/settings_65/run_/settings_65_countdown_full.csv",
-                        "from_run_number": 11,
-                        "to_run_number": 16,
-                        },
-            "countdown_settings_77": {
-                        "file_paths": "math/accuracy/settings_77/run_/settings_77_countdown_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "countdown_settings_78": {
-                        "file_paths": "math/accuracy/settings_78/run_/settings_78_countdown_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "countdown_settings_00": {
-                        "file_paths": "math/accuracy/settings_00/run_/settings_00_countdown_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "countdown_settings_81": {
-                        "file_paths": "math/accuracy/settings_81/run_/settings_81_countdown_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "countdown_settings_82": {
-                        "file_paths": "math/accuracy/settings_82/run_/settings_82_countdown_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "countdown_settings_79": {
-                        "file_paths": "math/accuracy/settings_79/run_/settings_79_countdown_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "countdown_settings_83": {
-                        "file_paths": "math/accuracy/settings_83/run_/settings_83_countdown_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
-            "countdown_settings_84": {
-                        "file_paths": "math/accuracy/settings_84/run_/settings_84_countdown_full.csv",
-                        "from_run_number": 1,
-                        "to_run_number": 6,
-                        },
+            # "countdown_settings_0": {
+            #             "file_paths": "math/accuracy/settings_0/run_/settings_0_countdown_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "countdown_settings_37": {
+            #             "file_paths": "math/accuracy/settings_37/run_/settings_37_countdown_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "countdown_settings_51": {
+            #             "file_paths": "math/accuracy/settings_51/run_/settings_51_countdown_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "countdown_settings_46": {
+            #             "file_paths": "math/accuracy/settings_46/run_/settings_46_countdown_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "countdown_settings_64": {
+            #             "file_paths": "math/accuracy/settings_64/run_/settings_64_countdown_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "countdown_settings_65": {
+            #             "file_paths": "math/accuracy/settings_65/run_/settings_65_countdown_full.csv",
+            #             "from_run_number": 11,
+            #             "to_run_number": 16,
+            #             },
+            # "countdown_settings_77": {
+            #             "file_paths": "math/accuracy/settings_77/run_/settings_77_countdown_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "countdown_settings_78": {
+            #             "file_paths": "math/accuracy/settings_78/run_/settings_78_countdown_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "countdown_settings_00": {
+            #             "file_paths": "math/accuracy/settings_00/run_/settings_00_countdown_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "countdown_settings_81": {
+            #             "file_paths": "math/accuracy/settings_81/run_/settings_81_countdown_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "countdown_settings_82": {
+            #             "file_paths": "math/accuracy/settings_82/run_/settings_82_countdown_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "countdown_settings_79": {
+            #             "file_paths": "math/accuracy/settings_79/run_/settings_79_countdown_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "countdown_settings_83": {
+            #             "file_paths": "math/accuracy/settings_83/run_/settings_83_countdown_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
+            # "countdown_settings_84": {
+            #             "file_paths": "math/accuracy/settings_84/run_/settings_84_countdown_full.csv",
+            #             "from_run_number": 1,
+            #             "to_run_number": 6,
+            #             },
 
 
             "humaneval_settings_0": {
@@ -566,7 +566,7 @@ class accuracy_analysis(object):
     def aggregate_mean_pandas_rounded(df, group_cols, value_cols) -> pd.DataFrame:
         result = df.groupby(group_cols)[value_cols].agg(['mean', 'std']).reset_index()
         for col in value_cols:
-            result[col] = result[col].round(3)
+            result[col] = result[col].round(2)
         return result
 
     @staticmethod
