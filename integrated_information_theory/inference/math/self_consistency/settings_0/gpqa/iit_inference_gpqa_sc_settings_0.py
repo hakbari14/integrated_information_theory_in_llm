@@ -19,6 +19,9 @@ class iit_inference_gpqa_sc_settings_0(integrated_information_inference):
         return self.dataset
 
     
+    def get_max_new_tokens(self):
+        return 15000
+
     def get_iit_calculator(self):
         return None
 
@@ -29,5 +32,5 @@ class iit_inference_gpqa_sc_settings_0(integrated_information_inference):
         return self.logger
 
 
-t = iit_inference_gpqa_sc_settings_0('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60', None)
-t.calculate_accuracy_self_consistency()
+t = iit_inference_gpqa_sc_settings_0('deepseek-ai/DeepSeek-R1-Distill-Qwen-7B')
+t.calculate_accuracy_self_consistency_vllm()

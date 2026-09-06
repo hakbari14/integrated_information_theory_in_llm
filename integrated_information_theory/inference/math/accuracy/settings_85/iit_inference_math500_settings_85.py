@@ -28,7 +28,7 @@ class iit_inference_math500_settings_85(integrated_information_inference):
         return self.logger
 
 
-for run_number in range(1,6):
+for run_number in range(3,6):
     print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
     t = iit_inference_math500_settings_85('hakbari/qwen3-8b_iit_phi_85')
     t.get_logger(run_number=run_number)
