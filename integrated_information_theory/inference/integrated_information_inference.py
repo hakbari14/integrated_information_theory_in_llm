@@ -529,7 +529,7 @@ class integrated_information_inference(ABC):
                         response = output.outputs[index]
                         completion = response.text
 
-                        log_detail = self_consistency_log_detail_entity()
+                        log_detail = self_consistency_log_detail_entity(f'{idx}_{index}')
                         log_detail.set_completion(completion)
                         log_detail.set_token_count(len(response.token_ids))
 
@@ -548,12 +548,13 @@ class integrated_information_inference(ABC):
             except Exception as e:
                 print(f"[WARN] generate failed: {e}")
 
+
         with jsonlines.open(self.get_output_file_path_code(), 'w') as writer:
             writer.write_all(samples)
         print(f"Generated samples saved to {self.get_output_file_path_code()}")
 
         print("\nRunning official HumanEval evaluation...")
-        result = evaluate_functional_correctness(self.get_output_file_path_code())
+        result = evaluate_functional_correctness(self.get_output_file_path_code(), n_workers=1)
 
         result_file = self.get_output_file_path_code() + '_results.jsonl'
         result_df = pd.read_json(result_file, lines=True)        
