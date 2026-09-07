@@ -34,7 +34,7 @@ class iit_inference_self_improve_settings_65(integrated_information_inference):
 
 for run_number in range(1,6):
     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-    t = iit_inference_self_improve_settings_65('/home/hr_akbari/research/LLM_PostTraining/live_logs/settings_65/checkpoint-1200-HF')
+    t = iit_inference_self_improve_settings_65('hakbari/deepseek_r1_qwen_7B_iit_phi_65')
     t.get_logger(run_number=run_number)
     t.calculate_accuracy_consciousness()
     print(f'{'*' * 210}')

@@ -117,6 +117,8 @@ class self_explanations_faithfulness_accuracy(object):
                         'settings_81/run_/predictor_answers_settings_81.parquet',
                         'settings_82/run_/predictor_answers_settings_82.parquet',
                         'settings_84/run_/predictor_answers_settings_84.parquet',
+                        'settings_85/run_/predictor_answers_settings_85.parquet',
+                        'settings_86/run_/predictor_answers_settings_86.parquet',
                         
                     ]
         return dir_, csv_paths

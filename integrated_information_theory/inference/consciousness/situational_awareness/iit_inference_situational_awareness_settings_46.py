@@ -30,7 +30,7 @@ class iit_inference_situational_awareness_settings_46(integrated_information_inf
 
 for run_number in range(1,6):
     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-    t = iit_inference_situational_awareness_settings_46('/home/hr_akbari/research/LLM_PostTraining/live_logs/settings_46/checkpoint-500-HF')
+    t = iit_inference_situational_awareness_settings_46('hakbari/deepseek_r1_qwen_7B_iit_intrinsic_information_46')
     t.get_logger(run_number=run_number)
     t.calculate_accuracy_consciousness()
     print(f'{'*' * 210}')

@@ -30,7 +30,7 @@ class iit_inference_known_knowns_settings_0(integrated_information_inference):
 
 for run_number in range(1,6):
     print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
-    t = iit_inference_known_knowns_settings_0('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60',)
+    t = iit_inference_known_knowns_settings_0('deepseek-ai/DeepSeek-R1-Distill-Qwen-7B')
     t.get_logger(run_number=run_number)
     t.calculate_accuracy_consciousness()
     print(f'{'*' * 210}')
