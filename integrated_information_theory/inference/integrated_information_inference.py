@@ -495,7 +495,7 @@ class integrated_information_inference(ABC):
         self.get_logger().write_to_log_file()
 
     @torch.inference_mode()
-    def calculate_accuracy_self_consistency_code(self, batch_size = 12, temperature = 0.7, num_sequences = 10, top_p = 0.9, top_k = 50, pass_at_k=3): 
+    def calculate_accuracy_self_consistency_code(self, batch_size = 12, temperature = 1.0, num_sequences = 10, top_p = 0.9, top_k = 50, pass_at_k=3): 
         _, test_dataset = self.get_dataset().preprocess_dataset()
         log_list = []
         print('Stage: Output generation')

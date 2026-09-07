@@ -29,5 +29,5 @@ class iit_inference_humaneval_sc_settings_64(integrated_information_inference):
         return self.logger
 
 
-t = iit_inference_humaneval_sc_settings_64('/home/hr_akbari/research/LLM_PostTraining/live_logs/settings_64/checkpoint-500-HF')
+t = iit_inference_humaneval_sc_settings_64('hakbari/deepseek_r1_qwen_7B_iit_max_phi_s_64')
 t.calculate_accuracy_self_consistency_code()

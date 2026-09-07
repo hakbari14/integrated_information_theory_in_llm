@@ -29,5 +29,5 @@ class iit_inference_humaneval_sc_settings_37(integrated_information_inference):
         return self.logger
 
 
-t = iit_inference_humaneval_sc_settings_37('/home/hr_akbari/research/LLM_PostTraining/live_logs/settings_37/checkpoint-1200-HF')
+t = iit_inference_humaneval_sc_settings_37('hakbari/deepseek_r1_qwen_7B_iit_accuracy_reward_37')
 t.calculate_accuracy_self_consistency_code()
