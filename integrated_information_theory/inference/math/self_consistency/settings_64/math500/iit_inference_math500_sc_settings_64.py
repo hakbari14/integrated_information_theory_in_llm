@@ -29,5 +29,5 @@ class iit_inference_math_500_sc_settings_64(integrated_information_inference):
         return self.logger
 
 
-t = iit_inference_math_500_sc_settings_64('/home/hr_akbari/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B/snapshots/916b56a44061fd5cd7d6a8fb632557ed4f724f60', '/home/hr_akbari/research/LLM_PostTraining/live_logs/settings_64/checkpoint-500')
+t = iit_inference_math_500_sc_settings_64('hakbari/deepseek_r1_qwen_7B_iit_max_phi_s_64')
 t.calculate_accuracy_self_consistency_vllm()
