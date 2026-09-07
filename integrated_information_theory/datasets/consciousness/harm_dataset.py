@@ -6,5 +6,5 @@ class harm_dataset(consciousness_dataset):
         super().__init__(config)
 
     def get_dataset_path(self):
-        return "/home/hr_akbari/research/LLM_PostTraining/integrated_information_theory/datasets/data/consciousness/harm.json"
+        return "./integrated_information_theory/datasets/data/consciousness/harm.json"
 
