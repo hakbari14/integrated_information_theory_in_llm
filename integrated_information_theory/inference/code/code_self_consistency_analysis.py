@@ -8,7 +8,7 @@ class self_consistency_analysis(object):
         csv_paths = [
                         'humaneval/self_consistency/settings_0_humaneval_sc.csv', 
                         'humaneval/self_consistency/settings_37_humaneval_sc.csv', 
-                        'humaneval/self_consistency/settings_51_humaneval_sc.csv', 
+                        'humaneval/self_consistency/settings_83_humaneval_sc.csv', 
                         'humaneval/self_consistency/settings_46_humaneval_sc.csv', 
                         'humaneval/self_consistency/settings_64_humaneval_sc.csv', 
                         'humaneval/self_consistency/settings_65_humaneval_sc.csv', 

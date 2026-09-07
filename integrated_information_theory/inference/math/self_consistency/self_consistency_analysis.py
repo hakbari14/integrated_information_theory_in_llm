@@ -20,7 +20,7 @@ class self_consistency_analysis(object):
                 token_count = sum(df["Token_Count"].to_list())
                 avg_length = token_count / row_count
                 
-                print(f"{csv_path}: Accuracy({accuracy:.2f}), Response Length({avg_length})")
+                print(f"{csv_path}: Accuracy({accuracy:.2f}), Response Length({avg_length:.1f})")
                 
             except Exception as e:
                 print(f"{csv_path}: {e}")
