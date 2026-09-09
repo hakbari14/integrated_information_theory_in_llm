@@ -44,7 +44,7 @@ class consciousness_dataset(dataset_handler):
     def generate_model_prompt(self, x):
         problem_id = x["unique_id"]
 
-        instruction_begin = "Answer the following question with only the most correct option and no extra content.\n"
+        instruction_begin = self.get_instruction_begin()
         instruction_end = "\nAnswer: "
         prompt = instruction_begin + x["question"] + instruction_end
 
@@ -62,5 +62,11 @@ class consciousness_dataset(dataset_handler):
                 "problem_id": problem_id
                 }
 
+    def get_instruction_begin(self):
+        if "qwen3-8b" in self.config.model_name.lower():
+            return "Solve the following question step by step, then output only the most correct option.\n"
+        
+        return "Answer the following question with only the most correct option and no extra content.\n"
+    
     def get_dataset_path(self):
         return None

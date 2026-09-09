@@ -42,7 +42,7 @@ class consciousness_accuracy_analysis(object):
     @staticmethod
     def create_radar_chart():
         dir_ = './integrated_information_theory/inference/consciousness/'
-        for settings in ['0', '37', '51', '46', '64', '65']:
+        for settings in ['0', '37', '83', '46', '64', '65', '00', '81', '84', '79', '85', '86']:
             accuracy_metric = []
             for bm in consciousness_accuracy_analysis.get_benchmark_name():
                 df = pd.read_csv(f'{dir_}/{bm}/settings_{settings}_{bm}.csv')
@@ -116,73 +116,133 @@ class consciousness_accuracy_analysis(object):
         csv_paths = [
                         'sequential_planning/run_/settings_0_sequential_planning.csv',
                         'sequential_planning/run_/settings_37_sequential_planning.csv',
-                        'sequential_planning/run_/settings_51_sequential_planning.csv',
+                        'sequential_planning/run_/settings_83_sequential_planning.csv',
                         'sequential_planning/run_/settings_46_sequential_planning.csv',
                         'sequential_planning/run_/settings_64_sequential_planning.csv',
                         'sequential_planning/run_/settings_65_sequential_planning.csv',
+                        'sequential_planning/run_/settings_00_sequential_planning.csv',
+                        'sequential_planning/run_/settings_81_sequential_planning.csv',
+                        'sequential_planning/run_/settings_84_sequential_planning.csv',
+                        'sequential_planning/run_/settings_79_sequential_planning.csv',
+                        'sequential_planning/run_/settings_86_sequential_planning.csv',
+                        'sequential_planning/run_/settings_85_sequential_planning.csv',
 
                         'self_improve/run_/settings_0_self_improve.csv',
                         'self_improve/run_/settings_37_self_improve.csv',
-                        'self_improve/run_/settings_51_self_improve.csv',
+                        'self_improve/run_/settings_83_self_improve.csv',
                         'self_improve/run_/settings_46_self_improve.csv',
                         'self_improve/run_/settings_64_self_improve.csv',
                         'self_improve/run_/settings_65_self_improve.csv',
+                        'self_improve/run_/settings_00_self_improve.csv',
+                        'self_improve/run_/settings_81_self_improve.csv',
+                        'self_improve/run_/settings_84_self_improve.csv',
+                        'self_improve/run_/settings_79_self_improve.csv',
+                        'self_improve/run_/settings_86_self_improve.csv',
+                        'self_improve/run_/settings_85_self_improve.csv',
 
                         'self_reflection/run_/settings_0_self_reflection.csv',
                         'self_reflection/run_/settings_37_self_reflection.csv',
-                        'self_reflection/run_/settings_51_self_reflection.csv',
+                        'self_reflection/run_/settings_83_self_reflection.csv',
                         'self_reflection/run_/settings_46_self_reflection.csv',
                         'self_reflection/run_/settings_64_self_reflection.csv',
                         'self_reflection/run_/settings_65_self_reflection.csv',
+                        'self_reflection/run_/settings_00_self_reflection.csv',
+                        'self_reflection/run_/settings_81_self_reflection.csv',
+                        'self_reflection/run_/settings_84_self_reflection.csv',
+                        'self_reflection/run_/settings_79_self_reflection.csv',
+                        'self_reflection/run_/settings_86_self_reflection.csv',
+                        'self_reflection/run_/settings_85_self_reflection.csv',
 
                         'known_unknowns/run_/settings_0_known_unknowns.csv',
                         'known_unknowns/run_/settings_37_known_unknowns.csv',
-                        'known_unknowns/run_/settings_51_known_unknowns.csv',
+                        'known_unknowns/run_/settings_83_known_unknowns.csv',
                         'known_unknowns/run_/settings_46_known_unknowns.csv',
                         'known_unknowns/run_/settings_64_known_unknowns.csv',
                         'known_unknowns/run_/settings_65_known_unknowns.csv',
+                        'known_unknowns/run_/settings_00_known_unknowns.csv',
+                        'known_unknowns/run_/settings_81_known_unknowns.csv',
+                        'known_unknowns/run_/settings_84_known_unknowns.csv',
+                        'known_unknowns/run_/settings_79_known_unknowns.csv',
+                        'known_unknowns/run_/settings_86_known_unknowns.csv',
+                        'known_unknowns/run_/settings_85_known_unknowns.csv',
 
                         'known_knowns/run_/settings_0_known_knowns.csv',
                         'known_knowns/run_/settings_37_known_knowns.csv',
-                        'known_knowns/run_/settings_51_known_knowns.csv',
+                        'known_knowns/run_/settings_83_known_knowns.csv',
                         'known_knowns/run_/settings_46_known_knowns.csv',
                         'known_knowns/run_/settings_64_known_knowns.csv',
                         'known_knowns/run_/settings_65_known_knowns.csv',
+                        'known_knowns/run_/settings_00_known_knowns.csv',
+                        'known_knowns/run_/settings_81_known_knowns.csv',
+                        'known_knowns/run_/settings_84_known_knowns.csv',
+                        'known_knowns/run_/settings_79_known_knowns.csv',
+                        'known_knowns/run_/settings_86_known_knowns.csv',
+                        'known_knowns/run_/settings_85_known_knowns.csv',
 
                         'situational_awareness/run_/settings_0_situational_awareness.csv',
                         'situational_awareness/run_/settings_37_situational_awareness.csv',
-                        'situational_awareness/run_/settings_51_situational_awareness.csv',
+                        'situational_awareness/run_/settings_83_situational_awareness.csv',
                         'situational_awareness/run_/settings_46_situational_awareness.csv',
                         'situational_awareness/run_/settings_64_situational_awareness.csv',
                         'situational_awareness/run_/settings_65_situational_awareness.csv',
+                        'situational_awareness/run_/settings_00_situational_awareness.csv',
+                        'situational_awareness/run_/settings_81_situational_awareness.csv',
+                        'situational_awareness/run_/settings_84_situational_awareness.csv',
+                        'situational_awareness/run_/settings_79_situational_awareness.csv',
+                        'situational_awareness/run_/settings_86_situational_awareness.csv',
+                        'situational_awareness/run_/settings_85_situational_awareness.csv',
 
                         'intention/run_/settings_0_intention.csv',
                         'intention/run_/settings_37_intention.csv',
-                        'intention/run_/settings_51_intention.csv',
+                        'intention/run_/settings_83_intention.csv',
                         'intention/run_/settings_46_intention.csv',
                         'intention/run_/settings_64_intention.csv',
                         'intention/run_/settings_65_intention.csv',
+                        'intention/run_/settings_00_intention.csv',
+                        'intention/run_/settings_81_intention.csv',
+                        'intention/run_/settings_84_intention.csv',
+                        'intention/run_/settings_79_intention.csv',
+                        'intention/run_/settings_86_intention.csv',
+                        'intention/run_/settings_85_intention.csv',
 
                         'deception/run_/settings_0_deception.csv',
                         'deception/run_/settings_37_deception.csv',
-                        'deception/run_/settings_51_deception.csv',
+                        'deception/run_/settings_83_deception.csv',
                         'deception/run_/settings_46_deception.csv',
                         'deception/run_/settings_64_deception.csv',
                         'deception/run_/settings_65_deception.csv',
+                        'deception/run_/settings_00_deception.csv',
+                        'deception/run_/settings_81_deception.csv',
+                        'deception/run_/settings_84_deception.csv',
+                        'deception/run_/settings_79_deception.csv',
+                        'deception/run_/settings_86_deception.csv',
+                        'deception/run_/settings_85_deception.csv',
 
                         'harm/run_/settings_0_harm.csv',
                         'harm/run_/settings_37_harm.csv',
-                        'harm/run_/settings_51_harm.csv',
+                        'harm/run_/settings_83_harm.csv',
                         'harm/run_/settings_46_harm.csv',
                         'harm/run_/settings_64_harm.csv',
                         'harm/run_/settings_65_harm.csv',
+                        'harm/run_/settings_00_harm.csv',
+                        'harm/run_/settings_81_harm.csv',
+                        'harm/run_/settings_84_harm.csv',
+                        'harm/run_/settings_79_harm.csv',
+                        'harm/run_/settings_86_harm.csv',
+                        'harm/run_/settings_85_harm.csv',
 
                         'belief/run_/settings_0_belief.csv',
                         'belief/run_/settings_37_belief.csv',
-                        'belief/run_/settings_51_belief.csv',
+                        'belief/run_/settings_83_belief.csv',
                         'belief/run_/settings_46_belief.csv',
                         'belief/run_/settings_64_belief.csv',
                         'belief/run_/settings_65_belief.csv',
+                        'belief/run_/settings_00_belief.csv',
+                        'belief/run_/settings_81_belief.csv',
+                        'belief/run_/settings_84_belief.csv',
+                        'belief/run_/settings_79_belief.csv',
+                        'belief/run_/settings_86_belief.csv',
+                        'belief/run_/settings_85_belief.csv',
                     ]
         return dir_, csv_paths
 
@@ -209,7 +269,7 @@ class consciousness_accuracy_analysis(object):
         if not match:
             return None
         
-        return float(match.group()) if '.' in match.group() else int(match.group())
+        return match.group() if '.' in match.group() else match.group()
 
 consciousness_accuracy_analysis.calculate_accuracy()
 # consciousness_accuracy_analysis.create_radar_chart()
