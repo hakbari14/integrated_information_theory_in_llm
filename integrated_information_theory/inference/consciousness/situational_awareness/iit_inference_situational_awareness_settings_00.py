@@ -29,7 +29,7 @@ class iit_inference_situational_awareness_settings_00(integrated_information_inf
         return self.logger
 
 
-for run_number in range(6,7):
+for run_number in range(1,6):
     print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
     t = iit_inference_situational_awareness_settings_00('Qwen/Qwen3-8B')
     t.get_logger(run_number=run_number)
