@@ -11,10 +11,13 @@ class causalbench_dataset(dataset_handler):
     
     def final_answer_extraction(self, prompt, solution, target):
         last = solution[-min(600, len(solution)):]
+        if "</think>" in solution:
+            last = solution.split("</think>", 1)[1].strip()
 
         patterns = [
             r'(?i)answer.*?\b(yes|no)\b',            
             r'(?i)\b(Yes|No)\b',            
+            r'\(?\s*(Yes|No)\s*\)?',            
         ]
 
         for pattern in patterns:

@@ -27,9 +27,9 @@ class iit_inference_text_causalbench_settings_00(integrated_information_inferenc
 
 
 for run_number in range(1,6):
-    print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
+    print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
     t = iit_inference_text_causalbench_settings_00('Qwen/Qwen3-8B')
     t.get_logger(run_number=run_number)
     t.calculate_accuracy_causal_bench()
-    print(f'{'*' * 210}')
+    print(f"{'*' * 210}")
 
