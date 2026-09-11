@@ -60,10 +60,16 @@ class causalbench_accuracy_analysis(object):
         csv_paths = [
                         'text/run_/settings_0_causalbench.csv',
                         'text/run_/settings_37_causalbench.csv',
-                        'text/run_/settings_51_causalbench.csv',
+                        'text/run_/settings_83_causalbench.csv',
                         'text/run_/settings_46_causalbench.csv',
                         'text/run_/settings_64_causalbench.csv',
                         'text/run_/settings_65_causalbench.csv',
+                        'text/run_/settings_00_causalbench.csv',
+                        'text/run_/settings_81_causalbench.csv',
+                        'text/run_/settings_84_causalbench.csv',
+                        'text/run_/settings_79_causalbench.csv',
+                        'text/run_/settings_86_causalbench.csv',
+                        'text/run_/settings_85_causalbench.csv',
                         
                         # 'math/settings_0_math_causalbench.csv',
                         # 'math/settings_37_math_causalbench.csv',
