@@ -262,6 +262,7 @@ class iit_entity:
         new_entity.set_promptID(entity.get_promptID())
         new_entity.set_prompt(entity.get_prompt())
         new_entity.set_completion(entity.get_completion())
+        new_entity.set_completion_embedding_shape(entity.get_completion_embedding_shape())
         new_entity.set_token_count(entity.get_token_count())
         if entity.get_prompt_embedding() is not None: 
             new_entity.set_prompt_embedding(entity.get_prompt_embedding().copy())

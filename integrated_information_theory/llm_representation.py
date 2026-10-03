@@ -8,7 +8,7 @@ import numpy as np
 
 class llm_representation: 
 
-    def extract_representation(self, text, model, tokenizer, layer_type):
+    def extract_representation(self, text: str, model, tokenizer, layer_type: iit_layer_type_enum) -> tuple[np.ndarray, float, float]:
         """Return hidden states from the given model (no gradients)."""
         # model.eval()  
         with torch.no_grad():
@@ -31,15 +31,15 @@ class llm_representation:
                 sampled_layers = sorted(set(sampled_layers))
                 filtered_hidden = hidden[sampled_layers, :, :].copy()
                 del hidden
-                return filtered_hidden, loss, entropy
+                return filtered_hidden, loss.item(), entropy
             
             elif iit_layer_type_enum.ALL == layer_type: 
-                return hidden, loss, entropy
+                return hidden, loss.item(), entropy
 
             elif iit_layer_type_enum.LAST == layer_type: 
                 filtered_hidden = hidden[-1, :, :].copy()
                 del hidden
-                return filtered_hidden, loss, entropy
+                return filtered_hidden, loss.item(), entropy
 
         return None, None, None
 

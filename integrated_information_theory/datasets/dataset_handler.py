@@ -2,6 +2,7 @@ from integrated_information_theory.enums_class import dataset_element_type_enum,
 from abc import ABC, abstractmethod
 from transformers import AutoTokenizer
 import configparser
+from datasets import disable_caching
 
 class dataset_handler(ABC): 
 
@@ -13,6 +14,7 @@ class dataset_handler(ABC):
         self.prompt_config.read('./integrated_information_theory/datasets/dataset_prompt.cfg')
 
     def preprocess_dataset(self):
+        disable_caching()
         train_dataset = self.train_dataset.map(lambda x: self.generate_model_prompt(x))
         train_dataset = train_dataset.filter(lambda x: self.filter_by_required_criteria(x, dataset_element_type_enum.TRAIN))
 

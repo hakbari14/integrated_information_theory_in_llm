@@ -12,6 +12,8 @@ class log_entity:
         self.token_count = None
         self.final_answer = None
         self.accuracy = None
+        self.completion_embedding_for_pca = None
+        self.completion_concatenated_embedding = None
         self.completion_embedding_shape = None
         self.completion_loss = None
         self.perplexity = None
@@ -34,6 +36,12 @@ class log_entity:
             raise Exception('split is required')
         if self.target is None:
             raise Exception('target is required')
+
+    def has_completion_embedding_for_pca(self) -> bool : 
+        return self.completion_embedding_for_pca is not None and self.completion_embedding_for_pca.shape is not None
+
+    def has_concatenated_embedding(self) -> bool: 
+        return self.completion_concatenated_embedding is not None and self.completion_concatenated_embedding.shape is not None
 
     def get_sample_ID(self):
         return self.sample_ID
@@ -88,6 +96,20 @@ class log_entity:
 
     def set_accuracy(self, value):
         self.accuracy = value
+
+    def get_completion_embedding_for_pca(self):
+        return self.completion_embedding_for_pca
+
+    def set_completion_embedding_for_pca(self, value):
+        self.completion_embedding_for_pca = value
+
+    def get_completion_concatenated_embedding(self):
+        return self.completion_concatenated_embedding
+
+    def set_completion_concatenated_embedding(self, value):
+        self.completion_concatenated_embedding = value
+        if value is not None: 
+            self.set_completion_embedding_shape(value.shape)
 
     def get_completion_embedding_shape(self):
         return self.completion_embedding_shape
