@@ -2,7 +2,6 @@ from integrated_information_theory.inference.analysis.iit_inference_analysis.iit
 from integrated_information_theory.datasets.math.open_thoughts_dataset import open_thoughts_dataset
 from integrated_information_theory.datasets.dataset_config import dataset_config
 from integrated_information_theory.logger.inference.iit_inference_analysis.iit_inference_analysis_logger import iit_inference_analysis_logger
-from integrated_information_theory.logger.inference.iit_inference_analysis.iit_inference_analysis_log_entity import iit_inference_analysis_log_entity
 
 class iit_analysis_openthought_deepSeek_r1_distill_qwen_7b(iit_inference_analysis): 
 
@@ -25,5 +24,8 @@ class iit_analysis_openthought_deepSeek_r1_distill_qwen_7b(iit_inference_analysi
 
 
 t = iit_analysis_openthought_deepSeek_r1_distill_qwen_7b(modelname='deepseek-ai/DeepSeek-R1-Distill-Qwen-7B', num_sequences=128, num_sequences_tpm=4)
-t.run(from_run_number=1, to_run_number=2)
+# t.run(from_run_number=1, to_run_number=2)
+
+t.best_of_n_analysis(from_run_number=1, to_run_number=2)
+t.variance_by_prompt_analysis(from_run_number=1, to_run_number=2)
 

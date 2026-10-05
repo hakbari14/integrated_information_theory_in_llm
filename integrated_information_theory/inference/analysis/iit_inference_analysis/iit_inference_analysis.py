@@ -16,6 +16,7 @@ from integrated_information_theory.config.integrated_information_config import i
 from integrated_information_theory.enums_class import ii_calculation_type_enum, tpm_creation_type_enum, last_layer_computation_type_enum, iit_layer_type_enum, iit_threashold_type_enum,ii_phi_type_enum, granularity_enum
 from integrated_information_theory.intrinsic_information import intrinsic_information
 from integrated_information_theory.integrated_information import integrated_information
+from integrated_information_theory.inference.analysis.iit_inference_analysis.iit_reward_analyzer import iit_reward_analyzer
 
 import pandas as pd
 import torch
@@ -61,6 +62,30 @@ class iit_inference_analysis(ABC):
             logger = self.create_logger(run_number)
             logger.add_to_buffer_list(log_analysis_list)
             logger.write_to_log_file()
+            
+            print(f"{'*' * 210}")
+
+    def best_of_n_analysis(self, from_run_number: int , to_run_number: int, num_subsets=1000) -> None:
+        print(f"{'*' * 100}  {self.modelname}  {'*' * 100}")
+        for run_number in range(from_run_number,to_run_number):
+            print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
+            
+            logger = self.create_logger(run_number)
+            df = pd.read_csv(logger.get_log_file_name())
+            analyzer = iit_reward_analyzer(dataframe = df, num_subsets = num_subsets)
+            analyzer.test()
+            
+            print(f"{'*' * 210}")
+
+    def variance_by_prompt_analysis(self, from_run_number: int , to_run_number: int, num_subsets=1000) -> None:
+        print(f"{'*' * 100}  {self.modelname}  {'*' * 100}")
+        for run_number in range(from_run_number,to_run_number):
+            print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
+            
+            logger = self.create_logger(run_number)
+            df = pd.read_csv(logger.get_log_file_name())
+            analyzer = iit_reward_analyzer(dataframe = df, num_subsets = num_subsets)
+            analyzer.reward_variance_by_prompt()
             
             print(f"{'*' * 210}")
 

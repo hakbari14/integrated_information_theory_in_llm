@@ -19,6 +19,8 @@ class iit_inference_analysis_log_entity:
     compared_final_answer : Optional[str] = None
     accuracy : Optional[bool] = None
 
+    completion_mean_representation : Optional[str] = None
+    
     iir_reward_raw_actual : Optional[float] = 0.0
     iir_reward_raw : Optional[float] = 0.0
     iir_reward : Optional[float] = 0.0

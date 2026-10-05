@@ -1,4 +1,5 @@
 from integrated_information_theory.logger.inference.inference_logger import inference_logger
+import json
 
 class iit_inference_analysis_logger(inference_logger): 
 
@@ -36,6 +37,8 @@ class iit_inference_analysis_logger(inference_logger):
                 'Phi_Reward_Raw': log.phi_reward_raw, 
                 'Phi_Reward': log.phi_reward, 
                 'Completion_Embedding_Shape_Phi': log.completion_embedding_shape_phi, 
+
+                'Completion_Mean_Representation': json.dumps(log.completion_mean_representation.tolist()), 
                 }
             list.append(b)            
         return list
@@ -69,5 +72,7 @@ class iit_inference_analysis_logger(inference_logger):
                 'Phi_Reward_Raw', 
                 'Phi_Reward', 
                 'Completion_Embedding_Shape_Phi', 
+
+                'Completion_Mean_Representation', 
                 ]
 
