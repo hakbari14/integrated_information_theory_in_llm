@@ -42,6 +42,50 @@ class llm_representation:
                 return filtered_hidden, loss.item(), entropy
 
         return None, None, None
+    
+    def optimize_extract_representation(self, text: str, model, tokenizer, layer_type: iit_layer_type_enum) -> tuple[np.ndarray, float, float]:
+        """Return hidden states from the given model (no gradients)."""
+        inputs = outputs = None
+        try:
+            with torch.no_grad():
+                inputs = tokenizer(text, return_tensors='pt').to(model.device)
+                outputs = model(
+                    **inputs, labels=inputs["input_ids"],
+                    output_hidden_states=True, use_cache=False,
+                )
+                num_layers = len(outputs.hidden_states)
+                if layer_type == iit_layer_type_enum.SOME:
+                    sampled_layers = np.linspace(1, num_layers - 1, num=12)
+                    sampled_layers = [int(x) for x in np.round(sampled_layers).tolist()]
+                    layer_2_3 = int(round((num_layers - 1) * 2 / 3))
+                    if layer_2_3 not in sampled_layers:
+                        sampled_layers.append(layer_2_3)
+                    layer_indices = sorted(set(sampled_layers))
+                elif layer_type == iit_layer_type_enum.ALL:
+                    layer_indices = range(num_layers)
+                elif layer_type == iit_layer_type_enum.LAST:
+                    layer_indices = [num_layers - 1]
+                else:
+                    return None, None, None
+
+                # Transfer only requested layers; never concatenate them on GPU.
+                hidden = np.concatenate([
+                    outputs.hidden_states[i].detach().cpu().float().numpy()
+                    for i in layer_indices
+                ], axis=0)
+                loss = outputs.loss.item()
+                # Convert one token's logits at a time, avoiding a full FP32 copy.
+                entropy = my_utils.calculate_entropy(
+                    row.detach().float() for row in outputs.logits.squeeze(0)
+                )
+                if layer_type == iit_layer_type_enum.LAST:
+                    hidden = hidden[0].copy()
+                return hidden, loss, entropy
+        finally:
+            # Also release tensors when extraction raises (including CUDA OOM).
+            del outputs, inputs
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
 
     def extract_representation_last_layer(self, text, model, tokenizer):
         """Return hidden states from the given model (no gradients)."""

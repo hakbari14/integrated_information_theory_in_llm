@@ -9,8 +9,8 @@ pyphi.config.PROGRESS_BARS = False
 
 class integrated_information(integrated_information_theory):
 
-    def __init__(self, config):
-        super().__init__(config)
+    def __init__(self, config, verbose = True):
+        super().__init__(config, verbose=verbose)
 
 
     def calculate_iit(self, entity, tpm_sbs, weights_ts):

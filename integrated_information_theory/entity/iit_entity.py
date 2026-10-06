@@ -87,7 +87,7 @@ class iit_entity:
     def set_completion_embedding(self, value):
         self.completion_embedding = value
         if self.completion_embedding is not None:
-            self.set_completion_mean_representation(self.completion_embedding.mean(dim=1))        
+            self.set_completion_mean_representation(self.completion_embedding.mean(axis=1))        
 
     def get_completion_embedding_shape(self):
         return self.completion_embedding_shape

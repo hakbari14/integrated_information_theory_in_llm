@@ -11,10 +11,11 @@ import sys
 
 class integrated_information_theory(ABC): 
 
-    def __init__(self, config):
+    def __init__(self, config, verbose = True):
         self.seed = 42
         self.set_config(config)
         self.get_config().validate()
+        self.verbose = verbose
 
     def calculate(self, iit_entity_list): 
         if iit_entity_list is None or len(iit_entity_list) == 0:
@@ -147,18 +148,21 @@ class integrated_information_theory(ABC):
         max_metric = -sys.float_info.max
         selected_dimension = 3
         best_iit_entity_list = iit_entity.clone_list(iit_entity_list)
-        print()
-        print(f'W_mean = {self.get_config().get_coefficient_mean_reward_dimension()}, W_std = {self.get_config().get_coefficient_std_reward_dimension()}')
+        if self.verbose:
+            print()
+            print(f'W_mean = {self.get_config().get_coefficient_mean_reward_dimension()}, W_std = {self.get_config().get_coefficient_std_reward_dimension()}')
         for d_entity in selection_dimension_list:
             metric = d_entity.get_difference_metric(self.get_config())
-            print(f'dimension = {d_entity.get_dimension()}, mean = {d_entity.get_normalized_mean_iit_reward()}, std = {d_entity.get_normalized_std_iit_reward()}, diff = {metric}, reward_list = {d_entity.get_iit_reward_list()}')
+            if self.verbose:
+                print(f'dimension = {d_entity.get_dimension()}, mean = {d_entity.get_normalized_mean_iit_reward()}, std = {d_entity.get_normalized_std_iit_reward()}, diff = {metric}, reward_list = {d_entity.get_iit_reward_list()}')
             if metric > max_metric:
                 max_metric = metric
                 selected_dimension = d_entity.get_dimension()
                 best_iit_entity_list = d_entity.get_iit_list()
-        print()
 
-        print(f'selected_dimension = {selected_dimension}, max_metric = {max_metric}')
+        if self.verbose:
+            print()
+            print(f'selected_dimension = {selected_dimension}, max_metric = {max_metric}')
         iit_entity.release_memory(iit_entity_list)
         iit_entity.release_memory(best_iit_entity_list)
         return best_iit_entity_list

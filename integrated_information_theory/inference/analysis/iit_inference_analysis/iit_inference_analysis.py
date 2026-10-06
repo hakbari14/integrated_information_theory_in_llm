@@ -237,7 +237,7 @@ class iit_inference_analysis(ABC):
     def load_embedding(self, log: iit_inference_analysis_entity, model, tokenizer) -> list[tuple[iit_entity, iit_inference_analysis_log_entity]]: 
         calculated_list = []
         refine_prompt = self.representation.clean_prompt_for_phi(log.prompt)
-        prompt_emb, _, _ = self.representation.extract_representation(refine_prompt, model, tokenizer, iit_layer_type_enum.SOME)
+        prompt_emb, _, _ = self.representation.optimize_extract_representation(refine_prompt, model, tokenizer, iit_layer_type_enum.SOME)
         
         for log_detail in log.consistency_list:     
             try:
@@ -249,7 +249,7 @@ class iit_inference_analysis(ABC):
                 entity.set_prompt_embedding(prompt_emb)
                 entity.set_completion(log_detail.completion)
                 if log_detail.completion is not None:
-                    completion_emb, _, _ = self.representation.extract_representation(entity.get_completion(), model, tokenizer, iit_layer_type_enum.SOME)
+                    completion_emb, _, _ = self.representation.optimize_extract_representation(entity.get_completion(), model, tokenizer, iit_layer_type_enum.SOME)
                     entity.set_completion_embedding_and_shape(completion_emb)
                     entity.set_token_count(completion_emb.shape[1])
                 
@@ -294,7 +294,7 @@ class iit_inference_analysis(ABC):
             config.set_threashold_type(iit_threashold_type_enum.AVERAGE)
             config.set_last_layer_computation_type(last_layer_computation_type_enum.EXP)
             config.set_last_layer_computation_param(0.09)
-            iit_calculator_list.append(intrinsic_information(config)) 
+            iit_calculator_list.append(intrinsic_information(config, verbose=False)) 
 
             config = integrated_information_config()
             config.set_name('Phi_S') 
@@ -307,7 +307,7 @@ class iit_inference_analysis(ABC):
             config.set_tpm_creation_type(tpm_creation_type_enum.PROMPT)
             config.set_last_layer_computation_type(last_layer_computation_type_enum.EXP)
             config.set_last_layer_computation_param(0.09)
-            iit_calculator_list.append(integrated_information(config)) 
+            iit_calculator_list.append(integrated_information(config, verbose=False)) 
 
             config = integrated_information_config()
             config.set_name('Phi')
@@ -320,7 +320,7 @@ class iit_inference_analysis(ABC):
             config.set_tpm_creation_type(tpm_creation_type_enum.PROMPT)
             config.set_last_layer_computation_type(last_layer_computation_type_enum.EXP)
             config.set_last_layer_computation_param(0.09)
-            iit_calculator_list.append(integrated_information(config)) 
+            iit_calculator_list.append(integrated_information(config, verbose=False)) 
             
             self.iit_calculator_list = iit_calculator_list
         
