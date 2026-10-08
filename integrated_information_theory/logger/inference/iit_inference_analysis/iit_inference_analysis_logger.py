@@ -38,7 +38,7 @@ class iit_inference_analysis_logger(inference_logger):
                 'Phi_Reward': log.phi_reward, 
                 'Completion_Embedding_Shape_Phi': log.completion_embedding_shape_phi, 
 
-                'Completion_Mean_Representation': json.dumps(log.completion_mean_representation.tolist()), 
+                'Completion_Mean_Representation': json.dumps(log.completion_mean_representation.tolist()) if log.completion_mean_representation is not None else None, 
                 }
             list.append(b)            
         return list

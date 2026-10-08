@@ -26,6 +26,6 @@ class iit_analysis_openthought_deepSeek_r1_distill_qwen_7b(iit_inference_analysi
 t = iit_analysis_openthought_deepSeek_r1_distill_qwen_7b(modelname='deepseek-ai/DeepSeek-R1-Distill-Qwen-7B', num_sequences=192, num_sequences_tpm=4)
 t.run(from_run_number=2, to_run_number=3)
 
-# t.best_of_n_analysis(from_run_number=, to_run_number=2)
-# t.variance_by_prompt_analysis(from_run_number=1, to_run_number=2)
+# t.best_of_n_analysis(from_run_number=2, to_run_number=3)
+# t.variance_by_prompt_analysis(from_run_number=2, to_run_number=3)
 

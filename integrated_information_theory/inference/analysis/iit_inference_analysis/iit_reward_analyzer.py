@@ -15,13 +15,16 @@ class iit_reward_analyzer:
     ]
 
     def __init__(self, dataframe: pd.DataFrame, num_subsets: int = 1000, seed: int = 42):
-        self.df = dataframe.copy()
-
         self.prompt_column = "Sample_ID"
         self.reward_columns = (self.REWARD_COLUMNS)
-
         self.num_subsets = num_subsets
         self.seed = seed
+
+        self.df = dataframe.dropna(
+            subset=self.reward_columns,
+            how="any"
+        ).copy().reset_index(drop=True)
+
 
     def _prompt_best_of_n(self, values: np.ndarray, n: int, rng: np.random.Generator) -> float:
         values = np.asarray(values, dtype=float)
@@ -131,7 +134,7 @@ class iit_reward_analyzer:
         return result_df
 
     def test_detailed(self) -> pd.DataFrame:
-        n_values = [1, 2, 4, 8, 16, 32, 64]
+        n_values = [1, 2, 4, 8, 16, 32, 64, 128]
         rows = []
 
         for n in n_values:

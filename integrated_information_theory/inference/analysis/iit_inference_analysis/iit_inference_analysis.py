@@ -252,6 +252,7 @@ class iit_inference_analysis(ABC):
                     completion_emb, _, _ = self.representation.optimize_extract_representation(entity.get_completion(), model, tokenizer, iit_layer_type_enum.SOME)
                     entity.set_completion_embedding_and_shape(completion_emb)
                     entity.set_token_count(completion_emb.shape[1])
+                    log_analysis.completion_mean_representation = completion_emb.mean(axis=1)
                 
                 if entity.is_calcutable():
                     calculated_list.append((entity, log_analysis))

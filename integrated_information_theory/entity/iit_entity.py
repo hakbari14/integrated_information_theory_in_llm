@@ -27,7 +27,6 @@ class iit_entity:
         self.completion_embedding_shape = None
         self.completion_embedding_for_pca = None
         self.completion_concatenated_embedding = None
-        self.completion_mean_representation = None
         self.markov_chain = None
         self.token_count_for_reduced_dim = None
         self.reduced_dim = None
@@ -86,8 +85,6 @@ class iit_entity:
 
     def set_completion_embedding(self, value):
         self.completion_embedding = value
-        if self.completion_embedding is not None:
-            self.set_completion_mean_representation(self.completion_embedding.mean(axis=1))        
 
     def get_completion_embedding_shape(self):
         return self.completion_embedding_shape
@@ -100,12 +97,6 @@ class iit_entity:
 
     def set_completion_embedding_for_pca(self, value):
         self.completion_embedding_for_pca = value
-
-    def get_completion_mean_representation(self):
-        return self.completion_mean_representation
-
-    def set_completion_mean_representation(self, value):
-        self.completion_mean_representation = value
 
     def get_iit_reward(self):
         return self.iit_reward
@@ -174,6 +165,7 @@ class iit_entity:
         self.set_completion_embedding(completion_embedding)
         if completion_embedding is not None: 
             self.set_completion_embedding_shape(completion_embedding.shape)
+            
 
     def add_token_list(self, tokenizer, completion, completion_emb):
         tokens = tokenizer.tokenize(completion)
