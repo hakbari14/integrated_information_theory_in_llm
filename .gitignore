@@ -5,3 +5,4 @@ pyphi.log
 live_logs/**
 .vscode/**
 .venv/**
+/integrated_information_theory/inference/analysis/iit_inference_analysis/openthought_deepseek_r1_7b/run_2/iit_analysis_openthought_deepSeek_r1_distill_qwen_7b.csv

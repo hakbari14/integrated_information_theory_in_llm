@@ -112,7 +112,7 @@ class iit_reward_analyzer:
         return pd.DataFrame(rows)
 
     def test(self, show_std: bool = False) -> pd.DataFrame:
-        n_values = [1, 2, 4, 8, 16, 32, 64]
+        n_values = [1, 2, 4, 8, 16, 32, 64, 128]
         table_rows = []
 
         for n in n_values:
@@ -156,8 +156,6 @@ class iit_reward_analyzer:
         return result_df
     
     def reward_variance_by_prompt(self, ddof: int = 1) -> pd.DataFrame:
-        # Group responses by promptID and calculate
-        # variance for all six rewards.
         variance_df = (
             self.df
             .groupby(self.prompt_column)[self.reward_columns]

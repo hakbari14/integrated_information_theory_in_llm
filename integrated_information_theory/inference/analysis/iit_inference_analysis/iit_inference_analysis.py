@@ -17,6 +17,8 @@ from integrated_information_theory.enums_class import ii_calculation_type_enum, 
 from integrated_information_theory.intrinsic_information import intrinsic_information
 from integrated_information_theory.integrated_information import integrated_information
 from integrated_information_theory.inference.analysis.iit_inference_analysis.iit_reward_analyzer import iit_reward_analyzer
+from integrated_information_theory.inference.analysis.iit_inference_analysis.iit_reward_learnability_analyzer import iit_reward_learnability_analyzer
+from integrated_information_theory.inference.analysis.iit_inference_analysis.iit_reward_mlp_learnability_analyzer import iit_reward_mlp_learnability_analyzer
 
 import pandas as pd
 import torch
@@ -65,27 +67,41 @@ class iit_inference_analysis(ABC):
             
             print(f"{'*' * 210}")
 
-    def best_of_n_analysis(self, from_run_number: int , to_run_number: int, num_subsets=1000) -> None:
+    def analyze(self, from_run_number: int , to_run_number: int, num_subsets=1000, test_size = 0.2) -> None:
         print(f"{'*' * 100}  {self.modelname}  {'*' * 100}")
         for run_number in range(from_run_number,to_run_number):
             print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
             
             logger = self.create_logger(run_number)
             df = pd.read_csv(logger.get_log_file_name())
+
             analyzer = iit_reward_analyzer(dataframe = df, num_subsets = num_subsets)
             analyzer.test()
-            
-            print(f"{'*' * 210}")
-
-    def variance_by_prompt_analysis(self, from_run_number: int , to_run_number: int, num_subsets=1000) -> None:
-        print(f"{'*' * 100}  {self.modelname}  {'*' * 100}")
-        for run_number in range(from_run_number,to_run_number):
-            print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
-            
-            logger = self.create_logger(run_number)
-            df = pd.read_csv(logger.get_log_file_name())
-            analyzer = iit_reward_analyzer(dataframe = df, num_subsets = num_subsets)
             analyzer.reward_variance_by_prompt()
+
+            results = []
+            ratio_list = [0.1, 0.2, 0.3]
+            for ratio in tqdm(ratio_list, desc="Logistic Regression Training", unit="step"): 
+                learner = iit_reward_learnability_analyzer(dataframe = df, low_high_ratio = ratio, test_size = test_size)
+                results.extend(learner.run())
+
+            for ratio in tqdm(ratio_list, desc="MLP Training", unit="step"): 
+                learner = iit_reward_mlp_learnability_analyzer(dataframe = df, low_high_ratio = ratio, test_size = test_size)
+                results.extend(learner.run())
+                
+            columns = ["Model", "Low_High_Ratio", "Reward", "AUROC", "Accuracy"]
+            df = pd.DataFrame(results)[columns]
+            df = df.sort_values(
+                by=["Reward", "Low_High_Ratio", "Model"],
+                ascending=True,
+            ).reset_index(drop=True)            
+            print(df.to_string(index=False, na_rep="N/A",
+                formatters={
+                    "AUROC": lambda x: f"{x:.4f}",
+                    "Accuracy": lambda x: f"{x:.4f}",
+                },
+            ))
+                            
             
             print(f"{'*' * 210}")
 
