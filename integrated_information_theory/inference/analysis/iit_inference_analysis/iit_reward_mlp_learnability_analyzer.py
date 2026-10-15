@@ -33,6 +33,7 @@ class iit_reward_mlp_learnability_analyzer:
         "IIR_Reward_Raw", "IIR_Reward",
         "Phi_S_Reward_Raw", "Phi_S_Reward",
         "Phi_Reward_Raw", "Phi_Reward",
+        "Token_Count",
     ]
 
     def __init__(

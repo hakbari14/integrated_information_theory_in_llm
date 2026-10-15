@@ -175,3 +175,18 @@ class iit_reward_analyzer:
         print(variance_df.to_string(index=False, float_format=lambda x: f"{x:.8f}"))
         print("=" * 120)
         return variance_df    
+
+    def print_alpha(self) -> pd.DataFrame:
+        result = (
+            self.df[self.reward_columns]
+            .quantile(0.5)
+            .reset_index()
+        )
+
+        result.columns = ["Reward", "Quantile_50"]
+
+        result["Alpha"] = (
+            np.log(2) / result["Quantile_50"].replace(0, np.nan)
+        )
+
+        print(result.to_string(index=False))

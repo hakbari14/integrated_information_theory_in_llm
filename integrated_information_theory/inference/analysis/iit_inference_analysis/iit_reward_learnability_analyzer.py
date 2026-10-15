@@ -20,6 +20,7 @@ class iit_reward_learnability_analyzer:
         "Phi_S_Reward",
         "Phi_Reward_Raw",
         "Phi_Reward",
+        "Token_Count",
     ]
 
     def __init__(self,

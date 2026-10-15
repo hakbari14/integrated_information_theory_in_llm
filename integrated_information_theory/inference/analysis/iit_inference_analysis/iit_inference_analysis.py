@@ -76,6 +76,7 @@ class iit_inference_analysis(ABC):
             df = pd.read_csv(logger.get_log_file_name())
 
             analyzer = iit_reward_analyzer(dataframe = df, num_subsets = num_subsets)
+            analyzer.print_alpha()
             analyzer.test()
             analyzer.reward_variance_by_prompt()
 
