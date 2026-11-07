@@ -24,6 +24,6 @@ class iit_analysis_openthought_qwen3_8b(iit_inference_analysis):
 
 
 t = iit_analysis_openthought_qwen3_8b(modelname='Qwen/Qwen3-8B', num_sequences=192, num_sequences_tpm=4)
-# t.run(from_run_number=2, to_run_number=3)
-t.analyze(from_run_number=2, to_run_number=3)
+# t.run(from_run_number=1, to_run_number=2)
+t.analyze(from_run_number=1, to_run_number=2)
 
