@@ -6,3 +6,4 @@ live_logs/**
 .vscode/**
 .venv/**
 /integrated_information_theory/inference/analysis/iit_inference_analysis/openthought_deepseek_r1_7b/run_2/iit_analysis_openthought_deepSeek_r1_distill_qwen_7b.csv
+/integrated_information_theory/inference/analysis/iit_inference_analysis/openthought_qwen3_8b/run_1/iit_analysis_openthought_qwen3_8b.csv
