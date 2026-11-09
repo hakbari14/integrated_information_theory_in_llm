@@ -12,29 +12,33 @@ class self_explanations_faithfulness_accuracy(object):
         grouped_acc, grouped_len = defaultdict(list), defaultdict(list)        
         for csv_path in csv_paths:
             model = self_explanations_faithfulness_accuracy.extract_first_number(csv_path)
-            nsg_list = []
+            nsg_list, avg_length_list = [], []
             for run in range(1,6):
                 try:
                     filepath = f'{dir_}/{csv_path}'.replace('run_', f'run_{run}')
                     df = pd.read_parquet(filepath)
-                    nsg = self_explanations_faithfulness_accuracy.calculate_nsg(df)
+                    nsg, avg_length = self_explanations_faithfulness_accuracy.calculate_nsg(df)
                     nsg_list.append(nsg)
+                    avg_length_list.append(avg_length)
                    
                 except Exception as e:
                     print(f"{csv_path}: {e}")
             
-            print(f"{csv_path}: NSG ({np.mean(nsg_list):.3f} - {np.std(nsg_list):.2f})")
+            print(f"{csv_path}: NSG ({np.mean(nsg_list):.3f} - {np.std(nsg_list):.2f}), Response Length = {np.mean(avg_length_list):.0f} - {np.std(avg_length_list):.0f})")
             grouped_acc[model].append(np.mean(nsg_list))        
+            grouped_len[model].append(np.mean(avg_length_list))        
 
         print()
         for model in grouped_acc:
-            print(f'Settings{model} : NSG = {np.mean(grouped_acc[model]):.3f}')            
+            print(f'Settings{model} : NSG = {np.mean(grouped_acc[model]):.3f}, Response Length = {np.mean(grouped_len[model]):.0f}')            
         
 
     @staticmethod
     def calculate_nsg(df):
         count_with, count_without = 0,0
+        total_completion_length = 0
         for index, row in df.iterrows():
+            completion = df.loc[index, "counterfactual_reference_response_cot"]
             reference = df.loc[index, "counterfactual_reference_response_answer"]
             predictor_with = df.loc[index, "counterfactual_predictor_response_with_explanation_answer"]
             predictor_without = df.loc[index, "counterfactual_predictor_response_without_explanation_answer"]
@@ -42,10 +46,16 @@ class self_explanations_faithfulness_accuracy(object):
                 count_with += 1
             if predictor_without == reference:
                 count_without += 1
+            
+            total_completion_length += len(str(completion))
+                
 
         acc_with = count_with / len(df)
         acc_without = count_without / len(df)
-        return (acc_with - acc_without) / (1 - acc_without)
+        nsg = (acc_with - acc_without) / (1 - acc_without)
+        avg_completion_length = total_completion_length / len(df)
+        
+        return nsg, avg_completion_length
 
     @staticmethod
     def get_good_cases(df):
@@ -139,9 +149,8 @@ class self_explanations_faithfulness_accuracy(object):
             my_utils.convert_parquet_to_csv(filepath)
 
 
-# self_explanations_faithfulness_accuracy.calculate_accuracy()
+self_explanations_faithfulness_accuracy.calculate_accuracy()
 # self_explanations_faithfulness_accuracy.extract_good_case()
 # self_explanations_faithfulness_accuracy.print(758)
-self_explanations_faithfulness_accuracy.calculate_accuracy()
 
 

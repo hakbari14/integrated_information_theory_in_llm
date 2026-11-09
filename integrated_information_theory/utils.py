@@ -5,6 +5,7 @@ import pandas as pd
 import torch.nn.functional as F
 import glob
 import numpy as np
+import math
 
 class my_utils(object):
     
@@ -30,15 +31,19 @@ class my_utils(object):
 
     @staticmethod
     def calculate_perplexity(loss):
-        if loss is None: 
+        if loss is None:
             return None
-        return torch.exp(loss).item()
+
+        if isinstance(loss, torch.Tensor):
+            return torch.exp(loss).item()
+
+        return math.exp(float(loss))
 
     @staticmethod
     def tensor_tostring(value):
-        if value is None: 
+        if value is None:
             return None
-        return value.item()
+        return str(value.item() if hasattr(value, "item") else value)
 
     @staticmethod
     def embedding_tostring(value):
