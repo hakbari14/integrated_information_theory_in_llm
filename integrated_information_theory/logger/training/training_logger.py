@@ -46,6 +46,10 @@ class training_logger(logger):
             found_item.set_entropy_reward(log.get_entropy_reward())
         if log.get_adaptive_length_reward() is not None:
             found_item.set_adaptive_length_reward(log.get_adaptive_length_reward())
+        if log.get_length_matched_target_lenght() is not None:
+            found_item.set_length_matched_target_lenght(log.get_length_matched_target_lenght())
+        if log.get_length_matched_reward() is not None:
+            found_item.set_length_matched_reward(log.get_length_matched_reward())
         if log.get_token_count() is not None:
             found_item.set_token_count(log.get_token_count())
         if log.get_token_count_for_reduced_dim() is not None:
@@ -79,6 +83,8 @@ class training_logger(logger):
                 'Entropy': log.get_entropy(),
                 'Entropy_Reward': log.get_entropy_reward(),
                 'Adaptive_Length_Reward': log.get_adaptive_length_reward(),
+                'Length_Matched_Target_Lenght': log.get_length_matched_target_lenght(),
+                'Length_Matched_Reward': log.get_length_matched_reward(),
                 'Tpm_Loss': log.get_tpm_loss(),
                 'Tpm_Entropy': log.get_tpm_entropy(),
                 }
@@ -107,6 +113,8 @@ class training_logger(logger):
                 'Entropy',
                 'Entropy_Reward',
                 'Adaptive_Length_Reward',
+                'Length_Matched_Target_Lenght',
+                'Length_Matched_Reward',
                 'Tpm_Loss',
                 'Tpm_Entropy',
                 ]

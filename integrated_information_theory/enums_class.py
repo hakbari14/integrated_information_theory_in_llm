@@ -44,6 +44,7 @@ class training_type_enum(StrEnum):
     IIT = 'iit'
     ENTROPY = 'entropy'
     ADAPTIVE_LENGTH_PENALTY = 'adaptive_length_penalty'
+    LENGTH_MATCHED_ADAPTIVE_LENGTH_PENALTY = 'length_matched_adaptive_length_penalty'
 
 class llm_pipeline_type_enum(StrEnum):
     TRAINING = 'training'

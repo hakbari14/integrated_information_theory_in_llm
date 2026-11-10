@@ -9,6 +9,8 @@ class training_log_entity(log_entity):
         self.accuracy_reward = None
         self.entropy_reward = None
         self.adaptive_length_reward = None
+        self.length_matched_target_lenght = None
+        self.length_matched_reward = None
 
     def validate(self): 
         super().validate()
@@ -46,3 +48,16 @@ class training_log_entity(log_entity):
 
     def set_adaptive_length_reward(self, value):
         self.adaptive_length_reward = value
+
+    def get_length_matched_target_lenght(self):
+        return self.length_matched_target_lenght
+
+    def set_length_matched_target_lenght(self, value):
+        self.length_matched_target_lenght = value
+
+    def get_length_matched_reward(self):
+        return self.length_matched_reward
+
+    def set_length_matched_reward(self, value):
+        self.length_matched_reward = value
+

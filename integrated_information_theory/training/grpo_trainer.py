@@ -77,6 +77,8 @@ class grpo_trainer(ABC):
             return [self.accuracy_reward, self.calculate_entropy_reward]
         elif training_type_enum.ADAPTIVE_LENGTH_PENALTY == self.training_type:
             return [self.accuracy_reward, self.calculate_adaptive_length_reward]
+        elif training_type_enum.LENGTH_MATCHED_ADAPTIVE_LENGTH_PENALTY == self.training_type:
+            return [self.accuracy_reward, self.calculate_adaptive_length_reward]
         else:
             return []
 
@@ -284,8 +286,11 @@ class grpo_trainer(ABC):
             try:
                 tokens = tokenizer.encode(completion, add_special_tokens=False)
                 log.set_token_count(len(tokens))
-
-                reward = -1.0 * self.lambda_t * len(tokens)
+                reward = -1.0 * self.lambda_t * len(tokens) 
+                
+                log = self.calculate_length_matching_reward(log)
+                reward += log.get_length_matched_reward()
+                
                 log.set_adaptive_length_reward(reward)
                 rewards.append(reward)
 
@@ -300,6 +305,31 @@ class grpo_trainer(ABC):
     
         self.get_logger().write_to_log_file()
         return rewards
+
+
+    def calculate_length_matching_reward(self, log) -> float:
+        if training_type_enum.LENGTH_MATCHED_ADAPTIVE_LENGTH_PENALTY != self.training_type:
+            log.set_length_matched_target_lenght(0)
+            log.set_length_matched_reward(0.0)
+            return log
+
+        lambda_len: float = 0.5
+        epsilon: float = 1.0
+        
+        df = self.iir_dataframe
+        result = df.loc[df["problem_id"] == log.get_problem_id(), "Token_Count"]
+        target_length = result.iloc[0] if not result.empty else None
+        log.set_length_matched_target_lenght(target_length)
+        
+        if target_length == None:
+            log.set_length_matched_reward(0.0)
+            return log
+        
+        log_ratio = np.log((log.get_token_count() + epsilon) / (target_length + epsilon))
+        reward = -1.0 * lambda_len * log_ratio**2
+        log.set_length_matched_reward(float(reward))
+        
+        return log
 
 
     def calculate_coefficient_mean_std_2(self, iit_entity_list):
