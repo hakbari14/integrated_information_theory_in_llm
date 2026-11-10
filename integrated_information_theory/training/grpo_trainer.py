@@ -23,7 +23,7 @@ class grpo_trainer(ABC):
         self.training_type = training_type
         if self.training_type is None:
             raise Exception('training type is required')
-        if training_type_enum.BASELINE != self.training_type and training_type_enum.IIT != self.training_type and training_type_enum.ENTROPY != self.training_type and training_type_enum.ADAPTIVE_LENGTH_PENALTY != self.training_type:
+        if training_type_enum.BASELINE != self.training_type and training_type_enum.IIT != self.training_type and training_type_enum.ENTROPY != self.training_type and training_type_enum.ADAPTIVE_LENGTH_PENALTY != self.training_type and training_type_enum.LENGTH_MATCHED_ADAPTIVE_LENGTH_PENALTY != self.training_type:
             raise Exception('training type has not been correctly determined')
 
         self.representation = llm_representation()
