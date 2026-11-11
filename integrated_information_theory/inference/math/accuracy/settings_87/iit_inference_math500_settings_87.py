@@ -29,9 +29,9 @@ class iit_inference_math500_settings_87(integrated_information_inference):
 
 
 for run_number in range(1,6):
-    print(f'{'*' * 100}  Run Number {run_number}  {'*' * 100}')
+    print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
     t = iit_inference_math500_settings_87('hakbari/deepseek_r1_qwen_7B_length_matched_adaptive_length_penalty_87')
     t.get_logger(run_number=run_number)
     t.calculate_accuracy_vllm()
-    print(f'{'*' * 210}')
+    print(f"{'*' * 210}")
 
