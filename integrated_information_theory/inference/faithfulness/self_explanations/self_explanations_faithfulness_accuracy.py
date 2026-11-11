@@ -18,7 +18,7 @@ class self_explanations_faithfulness_accuracy(object):
                     filepath = f'{dir_}/{csv_path}'.replace('run_', f'run_{run}')
                     df = pd.read_parquet(filepath)
                     nsg, avg_length = self_explanations_faithfulness_accuracy.calculate_nsg(df)
-                    nsg_list.append(nsg)
+                    nsg_list.append(100 * nsg)
                     avg_length_list.append(avg_length)
                    
                 except Exception as e:
@@ -118,15 +118,18 @@ class self_explanations_faithfulness_accuracy(object):
                         'settings_0/run_/predictor_answers_settings_0.parquet',
                         'settings_37/run_/predictor_answers_settings_37.parquet',
                         'settings_51/run_/predictor_answers_settings_51.parquet',
+                        'settings_83/run_/predictor_answers_settings_83.parquet',
+                        'settings_87/run_/predictor_answers_settings_87.parquet',
                         'settings_46/run_/predictor_answers_settings_46.parquet',
                         'settings_64/run_/predictor_answers_settings_64.parquet',
                         'settings_65/run_/predictor_answers_settings_65.parquet',
-                        'settings_83/run_/predictor_answers_settings_83.parquet',
+
                         'settings_00/run_/predictor_answers_settings_00.parquet',
-                        'settings_79/run_/predictor_answers_settings_79.parquet',
                         'settings_81/run_/predictor_answers_settings_81.parquet',
                         'settings_82/run_/predictor_answers_settings_82.parquet',
                         'settings_84/run_/predictor_answers_settings_84.parquet',
+                        'settings_88/run_/predictor_answers_settings_88.parquet',
+                        'settings_79/run_/predictor_answers_settings_79.parquet',
                         'settings_85/run_/predictor_answers_settings_85.parquet',
                         'settings_86/run_/predictor_answers_settings_86.parquet',
                         

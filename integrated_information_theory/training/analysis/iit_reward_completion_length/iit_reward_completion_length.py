@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
 
 class iit_reward_completion_length(object):
 
@@ -25,6 +26,10 @@ class iit_reward_completion_length(object):
 
         # Compute correlation
         correlation = df["Phi_Reward_Raw"].corr(df["completion_length"])
+        correlation, p_value = pearsonr(
+            df["Phi_Reward_Raw"],
+            df["completion_length"]
+        )
 
         # Scatter plot
         plt.figure()
@@ -37,6 +42,8 @@ class iit_reward_completion_length(object):
         plt.savefig(f'./integrated_information_theory/training/analysis/iit_reward_completion_length/{model_name}_scatterplot.png')
 
         print(f"Pearson correlation: {round(correlation,2)}")        
+        print(f"P-value: {p_value:.6e}")
+        print(f"Sample NO: {len(df):0}")
         print()
 
 
