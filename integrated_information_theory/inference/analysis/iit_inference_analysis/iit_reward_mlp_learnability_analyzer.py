@@ -9,9 +9,10 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.decomposition import PCA
-from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GroupShuffleSplit
 from sklearn.preprocessing import StandardScaler
+from integrated_information_theory.inference.analysis.iit_inference_analysis.iit_reward_learnability_metrics import iit_reward_learnability_metrics
 
 
 class RewardMLP(nn.Module):
@@ -145,7 +146,7 @@ class iit_reward_mlp_learnability_analyzer:
             logits = model(torch.from_numpy(X).to(self.device)).cpu()
             probs = torch.sigmoid(logits).numpy()
         
-        return float(roc_auc_score(y, probs)), float(accuracy_score(y, probs >= 0.5)), probs
+        return float(accuracy_score(y, probs >= 0.5)), probs
 
     def train_single_reward(self, df, reward_column):
         random.seed(self.seed)
@@ -210,12 +211,16 @@ class iit_reward_mlp_learnability_analyzer:
                     break
         
         model.load_state_dict(best_state)
-        auroc, accuracy, _ = self._evaluate(model, X_test, y[test_idx])
+        y_true = y[test_idx]
+        accuracy, y_prob = self._evaluate(model, X_test, y_true)
+        calculator = iit_reward_learnability_metrics(y_true, y_prob)
+        
         self.models[reward_column] = {"model": model, "scaler": scaler, "pca": pca}
         
         return {
-            "Model": "MLP", "Low_High_Ratio": self.low_high_ratio,
-            "Reward": reward_column, "AUROC": auroc, "Accuracy": accuracy,
+            "Model": "MLP", "Low_High_Ratio": self.low_high_ratio, "Reward": reward_column, 
+            "Auroc": calculator.calculate_auroc(), "R2": calculator.calculate_r2(), "Spearman": calculator.calculate_spearman(),
+            "pairwise_ranking": calculator.calculate_pairwise_ranking_accuracy(), "Accuracy": accuracy,
             "Train_Samples": len(train_idx), "Validation_Samples": len(val_idx),
             "Test_Samples": len(test_idx),
             "Train_Prompts": len(set(groups[train_idx])),

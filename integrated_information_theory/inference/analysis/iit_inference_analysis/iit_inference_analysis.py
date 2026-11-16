@@ -90,7 +90,7 @@ class iit_inference_analysis(ABC):
                 learner = iit_reward_mlp_learnability_analyzer(dataframe = df, low_high_ratio = ratio, test_size = test_size)
                 results.extend(learner.run())
                 
-            columns = ["Model", "Low_High_Ratio", "Reward", "AUROC", "Accuracy"]
+            columns = ["Model", "Low_High_Ratio", "Reward", "R2", "Spearman","Auroc","pairwise_ranking","Accuracy"]
             df = pd.DataFrame(results)[columns]
             df = df.sort_values(
                 by=["Reward", "Low_High_Ratio", "Model"],
@@ -98,11 +98,13 @@ class iit_inference_analysis(ABC):
             ).reset_index(drop=True)            
             print(df.to_string(index=False, na_rep="N/A",
                 formatters={
-                    "AUROC": lambda x: f"{x:.4f}",
+                    "R2": lambda x: f"{x:.4f}",
+                    "Spearman": lambda x: f"{x:.4f}",
+                    "Auroc": lambda x: f"{x:.4f}",
+                    "pairwise_ranking": lambda x: f"{x:.4f}",
                     "Accuracy": lambda x: f"{x:.4f}",
                 },
             ))
-                            
             
             print(f"{'*' * 210}")
 

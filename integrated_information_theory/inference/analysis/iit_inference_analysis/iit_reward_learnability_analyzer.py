@@ -7,9 +7,9 @@ import pandas as pd
 from sklearn.model_selection import GroupShuffleSplit
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import roc_auc_score, accuracy_score
+from sklearn.metrics import accuracy_score
 from sklearn.pipeline import Pipeline
-
+from integrated_information_theory.inference.analysis.iit_inference_analysis.iit_reward_learnability_metrics import iit_reward_learnability_metrics
 
 class iit_reward_learnability_analyzer:
 
@@ -145,7 +145,7 @@ class iit_reward_learnability_analyzer:
         y_prob = model.predict_proba(X_test)[:, 1]
         y_pred = model.predict(X_test)
 
-        auroc = roc_auc_score(y_test, y_prob)
+        calculator = iit_reward_learnability_metrics(y_test, y_prob)
         accuracy = accuracy_score(y_test, y_pred)
 
         self.models[reward_column] = model
@@ -154,7 +154,10 @@ class iit_reward_learnability_analyzer:
             "Model": "Logistic_Regression",
             "Low_High_Ratio": self.low_high_ratio,
             "Reward": reward_column,
-            "AUROC": auroc,
+            "R2": calculator.calculate_r2(),
+            "Auroc": calculator.calculate_auroc(),
+            "Spearman": calculator.calculate_spearman(),
+            "pairwise_ranking": calculator.calculate_pairwise_ranking_accuracy(),
             "Accuracy": accuracy,
             "Train_Samples": len(train_idx),
             "Test_Samples": len(test_idx),
