@@ -86,5 +86,5 @@ class grpo_open_thoughts_llama_3_1_8b_Instruct_settings_91(grpo_open_thoughts_ll
         return self.logger
 
 
-t = grpo_open_thoughts_llama_3_1_8b_Instruct_settings_91(training_type_enum.BASELINE)
+t = grpo_open_thoughts_llama_3_1_8b_Instruct_settings_91(training_type_enum.IIT)
 t.train()
