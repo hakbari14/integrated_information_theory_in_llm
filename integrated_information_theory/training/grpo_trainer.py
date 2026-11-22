@@ -23,7 +23,7 @@ class grpo_trainer(ABC):
         self.training_type = training_type
         if self.training_type is None:
             raise Exception('training type is required')
-        if training_type_enum.BASELINE != self.training_type and training_type_enum.IIT != self.training_type and training_type_enum.ENTROPY != self.training_type and training_type_enum.ADAPTIVE_LENGTH_PENALTY != self.training_type and training_type_enum.LENGTH_MATCHED_ADAPTIVE_LENGTH_PENALTY != self.training_type:
+        if training_type_enum.BASELINE != self.training_type and training_type_enum.IIT != self.training_type and training_type_enum.ENTROPY != self.training_type and training_type_enum.ADAPTIVE_LENGTH_PENALTY != self.training_type and training_type_enum.LENGTH_MATCHED_ADAPTIVE_LENGTH_PENALTY != self.training_type and training_type_enum.IIT_WITHOUT_ACCYURACY_REWARD != self.training_type:
             raise Exception('training type has not been correctly determined')
 
         self.representation = llm_representation()
@@ -71,6 +71,8 @@ class grpo_trainer(ABC):
     def get_reward_funcs(self):
         if training_type_enum.IIT == self.training_type:
             return [self.accuracy_reward, self.calculate_iit_reward]
+        elif training_type_enum.IIT_WITHOUT_ACCYURACY_REWARD == self.training_type:
+            return [self.calculate_iit_reward]
         elif training_type_enum.BASELINE == self.training_type:
             return [self.accuracy_reward]
         elif training_type_enum.ENTROPY == self.training_type:
@@ -150,6 +152,17 @@ class grpo_trainer(ABC):
                 log.set_completion_loss(my_utils.tensor_tostring(x.get_completion_loss()))
                 log.set_perplexity(my_utils.calculate_perplexity(x.get_completion_loss()))
 
+                if training_type_enum.IIT_WITHOUT_ACCYURACY_REWARD == self.training_type:
+                    answer, target_answer_equal, _ = self.get_dataset().extract_and_verify_final_answer(prompt, completion, ground_truth)
+                    if answer is None:
+                        acc_reward = 0.0
+                    else:
+                        acc_reward = 1.0 if target_answer_equal else 0.0
+                    log.set_accuracy(acc_reward == 1.0)
+                    log.set_accuracy_reward(acc_reward)
+                    log.set_final_answer(answer)
+
+
                 calculated_entity_list = list(filter(lambda r: r.get_key() == x.get_key() , calculated_list))
                 if calculated_entity_list is not None and len(calculated_entity_list) == 1:
                     calculated_entity = calculated_entity_list[0]
@@ -159,8 +172,9 @@ class grpo_trainer(ABC):
                     log.set_phi_reward_raw(calculated_entity.get_iit_reward_raw())
 
                 self.get_logger().add_to_buffer(log)
-                rewards.append(log.get_phi_reward())
+                rewards.append(log.get_phi_reward() if log.get_phi_reward() is not None else 0.0)
             except Exception as e:
+                rewards.append(0.0)
                 print(f"[Error] calculate_iit_reward[create log]: {e}")
 
         self.get_logger().write_to_log_file()

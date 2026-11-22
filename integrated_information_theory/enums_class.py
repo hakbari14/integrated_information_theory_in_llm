@@ -42,6 +42,7 @@ class granularity_enum(StrEnum):
 class training_type_enum(StrEnum):
     BASELINE = 'baseline'
     IIT = 'iit'
+    IIT_WITHOUT_ACCYURACY_REWARD = 'iit_without_accuracy_reward'
     ENTROPY = 'entropy'
     ADAPTIVE_LENGTH_PENALTY = 'adaptive_length_penalty'
     LENGTH_MATCHED_ADAPTIVE_LENGTH_PENALTY = 'length_matched_adaptive_length_penalty'
