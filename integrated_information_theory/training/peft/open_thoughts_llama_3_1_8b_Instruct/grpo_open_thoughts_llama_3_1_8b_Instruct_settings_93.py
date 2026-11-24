@@ -71,6 +71,7 @@ class grpo_open_thoughts_llama_3_1_8b_Instruct_settings_93(grpo_open_thoughts_ll
             config.set_granularity(granularity_enum.TOKEN)
             config.set_layer_type(iit_layer_type_enum.SOME)
             config.set_threashold_type(iit_threashold_type_enum.AVERAGE)
+            config.set_coefficient_accuracy_reward(0.0)
 
             self.iit_calculator = integrated_information(config)
 
@@ -86,5 +87,5 @@ class grpo_open_thoughts_llama_3_1_8b_Instruct_settings_93(grpo_open_thoughts_ll
         return self.logger
 
 
-t = grpo_open_thoughts_llama_3_1_8b_Instruct_settings_93(training_type_enum.IIT_WITHOUT_ACCYURACY_REWARD)
+t = grpo_open_thoughts_llama_3_1_8b_Instruct_settings_93(training_type_enum.IIT)
 t.train()

@@ -9,6 +9,7 @@ class integrated_information_theory_config(ABC):
         self.is_fixed_coefficient = None
         self.coefficient_mean_reward_dimension = 0.5
         self.coefficient_std_reward_dimension = 0.5
+        self.coefficient_accuracy_reward = 0.5
         self.reduced_dim = None
         self.tpm_creation_type = None
         self.layer_type = None
@@ -86,6 +87,12 @@ class integrated_information_theory_config(ABC):
 
     def set_coefficient_std_reward_dimension(self, value): 
         self.coefficient_std_reward_dimension = value
+
+    def get_coefficient_accuracy_reward(self): 
+        return self.coefficient_accuracy_reward
+
+    def set_coefficient_accuracy_reward(self, value): 
+        self.coefficient_accuracy_reward = value
 
     def get_reduced_dim(self): 
         return self.reduced_dim

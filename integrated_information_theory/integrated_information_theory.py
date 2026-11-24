@@ -250,8 +250,8 @@ class integrated_information_theory(ABC):
     def refine_embedding(self, entity): 
         prompt_embedding = entity.get_prompt_embedding()
         response_embedding = entity.get_completion_embedding()
-        attention_score = self.attention_score(prompt_embedding, response_embedding)
-        attention_weight = self.attention_weight(attention_score)
+        attention_score = integrated_information_theory.attention_score(prompt_embedding, response_embedding)
+        attention_weight = integrated_information_theory.attention_weight(attention_score)
         attended_response = np.matmul(attention_weight, prompt_embedding)
         for t_entity in entity.get_iit_token_list():
             t_entity.set_attended_embedding(attended_response[:, t_entity.get_token_number(), :])
@@ -302,6 +302,20 @@ class integrated_information_theory(ABC):
         pca.fit(entity.get_completion_embedding_for_pca())
         return pca.transform(entity.get_completion_embedding_for_pca())
 
+    @staticmethod
+    def refine_prompt_response_embedding(prompt_embedding, response_embedding): 
+        attention_score = integrated_information_theory.attention_score(prompt_embedding, response_embedding)
+        attention_weight = integrated_information_theory.attention_weight(attention_score)
+        attended_response = np.matmul(attention_weight, prompt_embedding)
+
+        return np.concatenate(tuple(attended_response), axis=1,)
+
+    @staticmethod
+    def reduce_prompt_response_embedding(self, response_for_pca, dimension): 
+        pca = decomposition.PCA(n_components = dimension, random_state = self.seed + 42 * 5,)
+        pca.fit(response_for_pca)
+        return pca.transform(response_for_pca)
+    
     def compute_last_layer_on_reward(self, x):
         if last_layer_computation_type_enum.EXP == self.get_config().get_last_layer_computation_type(): 
             return 1 - math.exp(-1 * self.get_config().get_last_layer_computation_param() * x)
@@ -314,7 +328,8 @@ class integrated_information_theory(ABC):
         
         return 0.0
 
-    def attention_score(self, prompt, response, l_mask_spans=None, l_mask_context=None):
+    @staticmethod
+    def attention_score(prompt, response, l_mask_spans=None, l_mask_context=None):
         """
         Calculate attention score between prompt and response tensors.
 
@@ -361,7 +376,8 @@ class integrated_information_theory(ABC):
 
 
     # Apply softmax to get the final attention scores for each layer
-    def attention_weight(self, attention_scores, axis=-1):
+    @staticmethod
+    def attention_weight(attention_scores, axis=-1):
         # Subtract the max value of x along the specified axis to prevent overflow
         exps = np.exp(attention_scores - np.max(attention_scores, axis=axis, keepdims=True))
         # Calculate the sum of the exponentials along the specified axis
