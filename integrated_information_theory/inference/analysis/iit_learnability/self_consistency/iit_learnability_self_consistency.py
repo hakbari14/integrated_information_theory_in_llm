@@ -45,7 +45,7 @@ class iit_learnability_self_consistency(ABC):
             print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
             
             entity_list: list[iit_learnability_entity] = self.generate_self_consistency(run_number=run_number)
-            log_list: list[iit_learnability_log_entity] = self.calculate_iit_embedding(entity_list)
+            log_list: list[iit_learnability_log_entity] = self.extract_iit_embedding(entity_list)
             
             logger = self.create_logger(run_number)
             logger.add_to_buffer_list(log_list)
@@ -94,7 +94,7 @@ class iit_learnability_self_consistency(ABC):
                     detail_entity.token_count = len(output.token_ids)
                     
                     try:
-                        final_answer, accuracy, compared_final_answer = self.get_dataset().extract_and_verify_final_answer(entity.prompt, str(entity.completion), entity.target)
+                        final_answer, accuracy, compared_final_answer = self.get_dataset().extract_and_verify_final_answer(entity.prompt, str(detail_entity.completion), entity.target)
                         if final_answer is None or compared_final_answer is None: continue
                         detail_entity.final_answer = final_answer
                         detail_entity.compared_final_answer = compared_final_answer
@@ -115,7 +115,7 @@ class iit_learnability_self_consistency(ABC):
         return entity_list
 
     @torch.inference_mode()
-    def calculate_iit_embedding(self, entity_list: list[iit_learnability_entity]) -> list[iit_learnability_log_entity]: 
+    def extract_iit_embedding(self, entity_list: list[iit_learnability_entity]) -> list[iit_learnability_log_entity]: 
         bnb_config = BitsAndBytesConfig(
             load_in_4bit = True,
             bnb_4bit_quant_type = "nf4",
@@ -137,7 +137,7 @@ class iit_learnability_self_consistency(ABC):
     
                 try:
                     if detail_entity.completion is not None:
-                        completion_emb, _, _ = self.representation.optimize_extract_representation(detail_entity.get_completion(), model, tokenizer, iit_layer_type_enum.SOME)
+                        completion_emb, _, _ = self.representation.optimize_extract_representation(detail_entity.completion, model, tokenizer, iit_layer_type_enum.SOME)
                         log.completion_mean_representation = completion_emb.mean(axis=1)
                         
                         response_for_pca = integrated_information_theory.refine_prompt_response_embedding(prompt_emb, completion_emb)
@@ -147,8 +147,12 @@ class iit_learnability_self_consistency(ABC):
                         log.iit_completion_embedding_5 = integrated_information_theory.reduce_prompt_response_embedding(response_for_pca, dimension = 5)
                 except Exception as e:
                     print(f"[WARN] Load Embedding: {e}")
-                    
+                finally :
+                    del completion_emb, response_for_pca
+          
                 log_list.append(log)       
+
+            del prompt_emb
                 
         self.released_gpu_memory(model, tokenizer)
         return log_list

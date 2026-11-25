@@ -311,8 +311,8 @@ class integrated_information_theory(ABC):
         return np.concatenate(tuple(attended_response), axis=1,)
 
     @staticmethod
-    def reduce_prompt_response_embedding(self, response_for_pca, dimension): 
-        pca = decomposition.PCA(n_components = dimension, random_state = self.seed + 42 * 5,)
+    def reduce_prompt_response_embedding(response_for_pca, dimension): 
+        pca = decomposition.PCA(n_components = dimension, random_state = 42 + 42 * 5,)
         pca.fit(response_for_pca)
         return pca.transform(response_for_pca)
     
