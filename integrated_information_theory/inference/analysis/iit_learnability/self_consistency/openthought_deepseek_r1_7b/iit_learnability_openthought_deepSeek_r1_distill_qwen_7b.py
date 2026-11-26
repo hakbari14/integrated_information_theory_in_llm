@@ -24,5 +24,5 @@ class iit_learnability_openthought_deepSeek_r1_distill_qwen_7b(iit_learnability_
 
 
 t = iit_learnability_openthought_deepSeek_r1_distill_qwen_7b(modelname='deepseek-ai/DeepSeek-R1-Distill-Qwen-7B', num_sequences=128)
-t.run(from_run_number=1, to_run_number=2)
+t.run(from_run_number=2, to_run_number=3)
 

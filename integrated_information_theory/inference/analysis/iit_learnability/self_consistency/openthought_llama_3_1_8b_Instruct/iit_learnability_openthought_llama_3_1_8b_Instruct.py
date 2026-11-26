@@ -23,6 +23,6 @@ class iit_learnability_openthought_llama_3_1_8b_Instruct(iit_learnability_self_c
         return iit_learnability_logger(log_file_name = f'integrated_information_theory/inference/analysis/iit_learnability/self_consistency/openthought_llama_3_1_8b_Instruct/run_{run_number}/iit_learnability_openthought_llama_3_1_8b_Instruct.csv')
 
 
-t = iit_learnability_openthought_llama_3_1_8b_Instruct(modelname='/home/hr_akbari/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659', num_sequences=128)
-t.run(from_run_number=1, to_run_number=2)
+t = iit_learnability_openthought_llama_3_1_8b_Instruct(modelname='/home/hr_akbari/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659', num_sequences=192)
+t.run(from_run_number=2, to_run_number=3)
 

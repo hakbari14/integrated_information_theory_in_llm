@@ -312,6 +312,9 @@ class integrated_information_theory(ABC):
 
     @staticmethod
     def reduce_prompt_response_embedding(response_for_pca, dimension): 
+        if response_for_pca.shape[0] < dimension:
+            return None
+        
         pca = decomposition.PCA(n_components = dimension, random_state = 42 + 42 * 5,)
         pca.fit(response_for_pca)
         return pca.transform(response_for_pca)

@@ -45,11 +45,7 @@ class iit_learnability_self_consistency(ABC):
             print(f"{'*' * 100}  Run Number {run_number}  {'*' * 100}")
             
             entity_list: list[iit_learnability_entity] = self.generate_self_consistency(run_number=run_number)
-            log_list: list[iit_learnability_log_entity] = self.extract_iit_embedding(entity_list)
-            
-            logger = self.create_logger(run_number)
-            logger.add_to_buffer_list(log_list)
-            logger.write_to_log_file()
+            self.extract_iit_embedding(entity_list, run_number)
             
             print(f"{'*' * 210}")
 
@@ -115,7 +111,7 @@ class iit_learnability_self_consistency(ABC):
         return entity_list
 
     @torch.inference_mode()
-    def extract_iit_embedding(self, entity_list: list[iit_learnability_entity]) -> list[iit_learnability_log_entity]: 
+    def extract_iit_embedding(self, entity_list: list[iit_learnability_entity], run_number: int) -> None: 
         bnb_config = BitsAndBytesConfig(
             load_in_4bit = True,
             bnb_4bit_quant_type = "nf4",
@@ -127,11 +123,12 @@ class iit_learnability_self_consistency(ABC):
         model.config.pretraining_tp = 1        
         tokenizer = AutoTokenizer.from_pretrained(self.modelname)
 
-        log_list: list[iit_learnability_log_entity] = []
-        for entity in tqdm(entity_list, desc="Calculate IIT Embedding", unit="step"): 
+        logger = self.create_logger(run_number)
+        for entity in tqdm(entity_list, desc="Extract IIT Embedding", unit="step"): 
             refine_prompt = self.representation.clean_prompt_for_phi(entity.prompt)
             prompt_emb, _, _ = self.representation.optimize_extract_representation(refine_prompt, model, tokenizer, iit_layer_type_enum.SOME)
             
+            prompt_log_list: list[iit_learnability_log_entity] = []
             for detail_entity in entity.consistency_list:     
                 log = self.create_log_entity(entity, detail_entity)
     
@@ -146,16 +143,18 @@ class iit_learnability_self_consistency(ABC):
                         log.iit_completion_embedding_4 = integrated_information_theory.reduce_prompt_response_embedding(response_for_pca, dimension = 4)
                         log.iit_completion_embedding_5 = integrated_information_theory.reduce_prompt_response_embedding(response_for_pca, dimension = 5)
                 except Exception as e:
-                    print(f"[WARN] Load Embedding: {e}")
+                    print(f"[WARN] Extract IIT Embedding: {e}")
                 finally :
                     del completion_emb, response_for_pca
           
-                log_list.append(log)       
+                prompt_log_list.append(log)       
 
-            del prompt_emb
+            logger.add_to_buffer_list(prompt_log_list)
+            logger.write_to_log_file()
+            del prompt_log_list, prompt_emb
                 
         self.released_gpu_memory(model, tokenizer)
-        return log_list
+        return None
 
     def create_log_entity(self, entity: iit_learnability_entity, detail_entity: iit_learnability_detail_entity) -> iit_learnability_log_entity:
         log = iit_learnability_log_entity()
